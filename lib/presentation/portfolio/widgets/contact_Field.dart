@@ -46,7 +46,7 @@ class ContactField extends StatelessWidget {
                   borderSide: const BorderSide(color: Colors.black)),
               focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(5.0),
-                  borderSide: const BorderSide(color: Colors.black)),
+                  borderSide: const BorderSide(color: Colors.red)),
             ),
             keyboardType: TextInputType.name,
             textInputAction: TextInputAction.next,

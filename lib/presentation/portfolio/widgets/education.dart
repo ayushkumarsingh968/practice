@@ -2,24 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:timelines/timelines.dart';
 
 import 'header_widget.dart';
+import 'info.dart';
 
-class TimelineDetail extends StatelessWidget {
-  final String title;
- final String heading;
- final String subHeading;
- final String contentHeading;
- final String contentSubHeading;
- final double position;
-   const TimelineDetail({Key? key, required this.title, required this.heading, required this.subHeading, required this.contentHeading, required this.contentSubHeading, required this.position}) : super(key: key);
+List<Detail> detailList = [
+  Detail("2018-2022", "B.Tech", "Anand Engineering College,Ketham Agra",
+      "Computer Science and Engineering"),
+  Detail("2017-2018", "Intermediate",
+      "Reliance Academy,Rapti Nagar Phase-4 Gorakhpur", "PCM (CBSE)"),
+  Detail("2015-2016", "High school",
+      "Blossom Senior Secondary school Maniram Gorakhpur", "PCM (CBSE)"),
+];
+
+class Education extends StatelessWidget {
+  const Education({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-         Center(
+        const Center(
             child: Header(
                 padding: EdgeInsets.only(top: 20, left: 15),
-                text: title,
+                text: "EDUCATION",
                 fontSize: 35,
                 color: Color(0xff182153),
                 fontWeight: null)),
@@ -45,17 +49,15 @@ class TimelineDetail extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Header(
-                        padding:
-                        const EdgeInsets.only(top: 30, left: 15),
-                        text: heading,
+                        padding: const EdgeInsets.only(top: 40, left: 15),
+                        text: detailList[index].heading,
                         fontSize: 25,
                         color: const Color(0xff182153),
                         fontWeight: null,
                       ),
                       Header(
-                        padding:
-                        const EdgeInsets.only(top: 20, left: 15),
-                        text: subHeading,
+                        padding: const EdgeInsets.only(top: 20, left: 15),
+                        text: detailList[index].subHeading,
                         fontSize: 20,
                         color: const Color(0xff182153),
                         fontWeight: null,
@@ -70,16 +72,14 @@ class TimelineDetail extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Header(
-                          padding: const EdgeInsets.only(
-                              top: 30, left: 15),
-                          text: contentHeading,
+                          padding: const EdgeInsets.only(top: 40, left: 15),
+                          text: detailList[index].contentHeading,
                           fontSize: 25,
                           color: const Color(0xff182153),
                           fontWeight: null),
                       Header(
-                          padding: const EdgeInsets.only(
-                              top: 20, left: 15),
-                          text: contentSubHeading,
+                          padding: const EdgeInsets.only(top: 20, left: 15),
+                          text: detailList[index].contentSubHeading,
                           fontSize: 20,
                           color: const Color(0xff182153),
                           fontWeight: null),
@@ -87,16 +87,15 @@ class TimelineDetail extends StatelessWidget {
                   ),
                 ),
                 connectorStyleBuilder: (context, index) =>
-                ConnectorStyle.solidLine,
-                indicatorStyleBuilder: (context, index) =>
-                IndicatorStyle.dot,
-                indicatorPositionBuilder: (context, index) => position,
+                    ConnectorStyle.solidLine,
+                indicatorStyleBuilder: (context, index) => IndicatorStyle.dot,
+                indicatorPositionBuilder: (context, index) => 0.5,
                 itemCount: 3,
               ),
             ),
           ),
         ),
       ],
-    ) ;
+    );
   }
 }

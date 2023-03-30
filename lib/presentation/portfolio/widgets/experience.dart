@@ -2,24 +2,37 @@ import 'package:flutter/material.dart';
 import 'package:timelines/timelines.dart';
 
 import 'header_widget.dart';
+import 'info.dart';
 
-class TimelineDetail extends StatelessWidget {
-  final String title;
- final String heading;
- final String subHeading;
- final String contentHeading;
- final String contentSubHeading;
- final double position;
-   const TimelineDetail({Key? key, required this.title, required this.heading, required this.subHeading, required this.contentHeading, required this.contentSubHeading, required this.position}) : super(key: key);
+List<Info> infoList = [
+  Info(
+      "2022-Present",
+      "Flutter Developer",
+      "Mobcoder",
+      "Designed, Implemented, and tested Flutter and Dart code "
+          "\nusing bloc pattern, stream and Cubit architecture and also"
+          "\nImplemented firebase (Firebase login, Firebase real-time Database, Firestore, Analytics, push notification ) ."
+          "\nDesigned, Implemented, and tested Flutter and Dart code for Android, IOS and Web platforms ."),
+  Info(
+      "Oct 2021-Nov 2021",
+      "Web development Intern",
+      "The Sparks Foundation",
+      "Throughout my internship experience, "
+          "I devlop front-end web application using HTML,CSS, "
+          "through the support and guidance of my mentor."),
+];
+
+class Experience extends StatelessWidget {
+  const Experience({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-         Center(
+        const Center(
             child: Header(
                 padding: EdgeInsets.only(top: 20, left: 15),
-                text: title,
+                text: "EXPERIENCE",
                 fontSize: 35,
                 color: Color(0xff182153),
                 fontWeight: null)),
@@ -45,17 +58,15 @@ class TimelineDetail extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Header(
-                        padding:
-                        const EdgeInsets.only(top: 30, left: 15),
-                        text: heading,
+                        padding: const EdgeInsets.only(top: 30, left: 15),
+                        text: infoList[index].heading,
                         fontSize: 25,
                         color: const Color(0xff182153),
                         fontWeight: null,
                       ),
                       Header(
-                        padding:
-                        const EdgeInsets.only(top: 20, left: 15),
-                        text: subHeading,
+                        padding: const EdgeInsets.only(top: 20, left: 15),
+                        text: infoList[index].subHeading,
                         fontSize: 20,
                         color: const Color(0xff182153),
                         fontWeight: null,
@@ -70,16 +81,14 @@ class TimelineDetail extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Header(
-                          padding: const EdgeInsets.only(
-                              top: 30, left: 15),
-                          text: contentHeading,
+                          padding: const EdgeInsets.only(top: 30, left: 15),
+                          text: infoList[index].contentHeading,
                           fontSize: 25,
                           color: const Color(0xff182153),
                           fontWeight: null),
                       Header(
-                          padding: const EdgeInsets.only(
-                              top: 20, left: 15),
-                          text: contentSubHeading,
+                          padding: const EdgeInsets.only(top: 20, left: 15),
+                          text: infoList[index].contentSubHeading,
                           fontSize: 20,
                           color: const Color(0xff182153),
                           fontWeight: null),
@@ -87,16 +96,15 @@ class TimelineDetail extends StatelessWidget {
                   ),
                 ),
                 connectorStyleBuilder: (context, index) =>
-                ConnectorStyle.solidLine,
-                indicatorStyleBuilder: (context, index) =>
-                IndicatorStyle.dot,
-                indicatorPositionBuilder: (context, index) => position,
-                itemCount: 3,
+                    ConnectorStyle.solidLine,
+                indicatorStyleBuilder: (context, index) => IndicatorStyle.dot,
+                indicatorPositionBuilder: (context, index) => 0.2,
+                itemCount: 2,
               ),
             ),
           ),
         ),
       ],
-    ) ;
+    );
   }
 }
