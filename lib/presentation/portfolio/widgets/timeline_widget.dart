@@ -18,10 +18,10 @@ class TimelineDetail extends StatelessWidget {
       children: [
          Center(
             child: Header(
-                padding: EdgeInsets.only(top: 20, left: 15),
+                padding: const EdgeInsets.only(top: 20, left: 15),
                 text: title,
                 fontSize: 35,
-                color: Color(0xff182153),
+                color: const Color(0xff182153),
                 fontWeight: null)),
         const SizedBox(
           height: 20,

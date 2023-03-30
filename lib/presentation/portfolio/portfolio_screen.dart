@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:timelines/timelines.dart';
-import 'widgets/Social.dart';
+import 'widgets/social.dart';
 import 'widgets/contact_Field.dart';
 import 'widgets/header_widget.dart';
 import 'widgets/heading.dart';
@@ -68,33 +68,33 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
             height: 101,
             width: MediaQuery.of(context).size.width,
             child: Row(
-              children: [
-                const Header(
+              children: const [
+                Header(
                   padding: EdgeInsets.only(top: 20, left: 15),
                   text: "Ayush Kumar Singh",
                   fontSize: 30,
                   color: Color(0xff182153),
                   fontWeight: FontWeight.bold,
                 ),
-                const Spacer(),
+                Spacer(),
                 Heading(
-                  padding: const EdgeInsets.only(top: 20, left: 15),
+                  padding: EdgeInsets.only(top: 20, left: 15),
                   text: "EXPERIENCE",
                   fontSize: 15,
-                  color: const Color(0xff182153),
+                  color: Color(0xff182153),
                   fontWeight: FontWeight.bold,
                 ),
-                const SizedBox(
+                SizedBox(
                   width: 50,
                 ),
                 Heading(
-                  padding: const EdgeInsets.only(top: 20, left: 15),
+                  padding: EdgeInsets.only(top: 20, left: 15),
                   text: "EDUCATION",
                   fontSize: 15,
-                  color: const Color(0xff182153),
+                  color: Color(0xff182153),
                   fontWeight: FontWeight.bold,
                 ),
-                const SizedBox(
+                SizedBox(
                   width: 50,
                 ),
                 // Header(
@@ -108,33 +108,33 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                 //   width: 50,
                 // ),
                 Heading(
-                  padding: const EdgeInsets.only(top: 20, left: 15),
+                  padding: EdgeInsets.only(top: 20, left: 15),
                   text: "SKILLS",
                   fontSize: 15,
-                  color: const Color(0xff182153),
+                  color: Color(0xff182153),
                   fontWeight: FontWeight.bold,
                 ),
-                const SizedBox(
+                SizedBox(
                   width: 50,
                 ),
                 Heading(
-                  padding: const EdgeInsets.only(top: 20, left: 15),
+                  padding: EdgeInsets.only(top: 20, left: 15),
                   text: "PROJECTS",
                   fontSize: 15,
-                  color: const Color(0xff182153),
+                  color: Color(0xff182153),
                   fontWeight: FontWeight.bold,
                 ),
-                const SizedBox(
+                SizedBox(
                   width: 50,
                 ),
                 Heading(
-                  padding: const EdgeInsets.only(top: 20, left: 15),
+                  padding: EdgeInsets.only(top: 20, left: 15),
                   text: "CONTACT",
                   fontSize: 15,
-                  color: const Color(0xff182153),
+                  color: Color(0xff182153),
                   fontWeight: FontWeight.bold,
                 ),
-                const SizedBox(
+                SizedBox(
                   width: 50,
                 ),
               ],

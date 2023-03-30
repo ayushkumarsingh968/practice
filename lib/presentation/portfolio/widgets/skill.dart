@@ -14,7 +14,7 @@ class Skill extends StatelessWidget {
         color: Colors.white.withOpacity(0.1),
         child:  Center(
           child: Text(
-            text,style: TextStyle(fontSize: 20,color: Colors.white),
+            text,style: const TextStyle(fontSize: 20,color: Colors.white),
           ),
         ),
       ),

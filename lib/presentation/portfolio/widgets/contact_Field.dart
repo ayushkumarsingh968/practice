@@ -26,7 +26,7 @@ class ContactField extends StatelessWidget {
         Container(
           height: height,
           width: width,
-          margin: EdgeInsets.only(top: 10),
+          margin: const EdgeInsets.only(top: 10),
           child: TextField(
             inputFormatters: [
               LengthLimitingTextInputFormatter(40),
@@ -40,13 +40,13 @@ class ContactField extends StatelessWidget {
               filled: true,
               fillColor: Colors.white,
               contentPadding:
-                  EdgeInsets.symmetric(vertical: 14.0, horizontal: 15.0),
+                  const EdgeInsets.symmetric(vertical: 14.0, horizontal: 15.0),
               enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(5.0),
-                  borderSide: BorderSide(color: Colors.black)),
+                  borderSide: const BorderSide(color: Colors.black)),
               focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(5.0),
-                  borderSide: BorderSide(color: Colors.black)),
+                  borderSide: const BorderSide(color: Colors.black)),
             ),
             keyboardType: TextInputType.name,
             textInputAction: TextInputAction.next,

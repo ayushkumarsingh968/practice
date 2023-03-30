@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Heading extends StatefulWidget {
-  Heading({
+  const Heading({
     Key? key,
     required this.padding,
     required this.text,
@@ -20,11 +20,11 @@ class Heading extends StatefulWidget {
 
   final FontWeight? fontWeight;
 
-  bool isHovered = false;
-
   @override
   State<Heading> createState() => _HeadingState();
 }
+
+bool isHovered = false;
 
 class _HeadingState extends State<Heading> {
   @override
@@ -34,18 +34,18 @@ class _HeadingState extends State<Heading> {
       child: MouseRegion(
         onEnter: (event) {
           setState(() {
-            widget.isHovered = true;
+            isHovered = true;
           });
         },
         onExit: (event) {
           setState(() {
-            widget.isHovered = false;
+            isHovered = false;
           });
         },
         child: Text(widget.text,
             style: TextStyle(
                 fontSize: widget.fontSize,
-                color: widget.isHovered?Colors.grey:widget.color,
+                color: isHovered ? Colors.grey : widget.color,
                 fontWeight: widget.fontWeight)),
       ),
     );

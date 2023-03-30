@@ -6,7 +6,6 @@ import 'image_widget.dart';
 class SocialMedia extends StatelessWidget {
    const SocialMedia({Key? key, this.color, required this.alignment, }) : super(key: key);
 final Color? color;
-  // final Uri _url = Uri.parse('https://flutter.dev');
  final MainAxisAlignment alignment;
   @override
   Widget build(BuildContext context) {
