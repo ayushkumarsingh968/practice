@@ -2,10 +2,36 @@ import 'package:flutter/material.dart';
 
 import 'skill.dart';
 
-class SkillClass extends StatelessWidget {
+class SkillClass extends StatefulWidget {
   const SkillClass({Key? key}) : super(key: key);
 
   @override
+  State<SkillClass> createState() => _SkillClassState();
+}
+
+class _SkillClassState extends State<SkillClass> with TickerProviderStateMixin {
+  @override
+  late AnimationController _controller;
+  late Animation<double> _animation;
+
+  initState() {
+    super.initState();
+
+    _controller = AnimationController(
+        duration: const Duration(milliseconds: 5000),
+        vsync: this,
+        value: 0,
+        lowerBound: 0,
+        upperBound: 1
+    );
+    _animation = CurvedAnimation(parent: _controller, curve: Curves.fastOutSlowIn);
+  }
+
+  @override
+  dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
   Widget build(BuildContext context) {
     return Column(
       children: [
@@ -42,35 +68,43 @@ class SkillClass extends StatelessWidget {
               width: MediaQuery.of(context).size.width,
               color: const Color(0xff182153).withOpacity(0.75),
             ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Row(
-                    children: const [
-                      Skill(text: "Flutter"),
-                      Skill(text: "Dart"),
-                      Skill(text: "Firebase Tools"),
-                      Skill(text: "Bloc Architecture"),
+            FadeTransition(
+              opacity: _animation,
+              child: MouseRegion(
+                onEnter: (event){
+                  _controller.forward();
+                },
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Row(
+                        children: const [
+                          Skill(text: "Flutter"),
+                          Skill(text: "Dart"),
+                          Skill(text: "Firebase Tools"),
+                          Skill(text: "Bloc Architecture"),
+                        ],
+                      ),
+                      Row(
+                        children: const [
+                          Skill(text: "Cubit Architecture"),
+                          Skill(text: "GitLab"),
+                          Skill(text: "GitHub"),
+                          Skill(text: "UI"),
+                        ],
+                      ),
+                      Row(
+                        children: const [
+                          Skill(text: "Android Studio"),
+                          Skill(text: "Animation"),
+                        ],
+                      ),
                     ],
                   ),
-                  Row(
-                    children: const [
-                      Skill(text: "Cubit Architecture"),
-                      Skill(text: "GitLab"),
-                      Skill(text: "GitHub"),
-                      Skill(text: "UI"),
-                    ],
-                  ),
-                  Row(
-                    children: const [
-                      Skill(text: "Android Studio"),
-                      Skill(text: "Animation"),
-                    ],
-                  ),
-                ],
+                ),
               ),
             )
             // Padding(
