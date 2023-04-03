@@ -10,15 +10,25 @@ class SkillClass extends StatefulWidget {
 }
 
 class _SkillClassState extends State<SkillClass> with TickerProviderStateMixin {
-  @override
   late AnimationController _controller;
   late Animation<double> _animation;
-
+  late final AnimationController _left = AnimationController(
+    duration: const Duration(milliseconds: 2000),
+    vsync: this,
+  );
+  late final Animation<Offset> _offsetAnimation = Tween<Offset>(
+    begin: const Offset(-0.1, 0.0),
+    end: const Offset(0.00, 0.0),
+  ).animate(CurvedAnimation(
+    parent: _left,
+    curve: Curves.ease,
+  ));
+  @override
   initState() {
     super.initState();
 
     _controller = AnimationController(
-        duration: const Duration(milliseconds: 5000),
+        duration: const Duration(milliseconds: 2000),
         vsync: this,
         value: 0,
         lowerBound: 0,
@@ -32,6 +42,7 @@ class _SkillClassState extends State<SkillClass> with TickerProviderStateMixin {
     _controller.dispose();
     super.dispose();
   }
+  @override
   Widget build(BuildContext context) {
     return Column(
       children: [
@@ -68,41 +79,45 @@ class _SkillClassState extends State<SkillClass> with TickerProviderStateMixin {
               width: MediaQuery.of(context).size.width,
               color: const Color(0xff182153).withOpacity(0.75),
             ),
-            FadeTransition(
-              opacity: _animation,
-              child: MouseRegion(
-                onEnter: (event){
-                  _controller.forward();
-                },
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Row(
-                        children: const [
-                          Skill(text: "Flutter"),
-                          Skill(text: "Dart"),
-                          Skill(text: "Firebase Tools"),
-                          Skill(text: "Bloc Architecture"),
-                        ],
-                      ),
-                      Row(
-                        children: const [
-                          Skill(text: "Cubit Architecture"),
-                          Skill(text: "GitLab"),
-                          Skill(text: "GitHub"),
-                          Skill(text: "UI"),
-                        ],
-                      ),
-                      Row(
-                        children: const [
-                          Skill(text: "Android Studio"),
-                          Skill(text: "Animation"),
-                        ],
-                      ),
-                    ],
+            SlideTransition(
+              position: _offsetAnimation,
+              child: FadeTransition(
+                opacity: _animation,
+                child: MouseRegion(
+                  onEnter: (event){
+                    _controller.forward();
+                    _left.forward();
+                  },
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Row(
+                          children: const [
+                            Skill(text: "Flutter"),
+                            Skill(text: "Dart"),
+                            Skill(text: "Firebase Tools"),
+                            Skill(text: "Bloc Architecture"),
+                          ],
+                        ),
+                        Row(
+                          children: const [
+                            Skill(text: "Cubit Architecture"),
+                            Skill(text: "GitLab"),
+                            Skill(text: "GitHub"),
+                            Skill(text: "UI"),
+                          ],
+                        ),
+                        Row(
+                          children: const [
+                            Skill(text: "Android Studio"),
+                            Skill(text: "Animation"),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

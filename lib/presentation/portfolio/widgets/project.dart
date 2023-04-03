@@ -10,15 +10,36 @@ class Project extends StatefulWidget {
 }
 
 class _ProjectState extends State<Project> with TickerProviderStateMixin {
-  @override
   late AnimationController _controller;
   late Animation<double> _animation;
-
+  late final AnimationController _left = AnimationController(
+    duration: const Duration(milliseconds: 2000),
+    vsync: this,
+  );
+  late final Animation<Offset> _offsetAnimation = Tween<Offset>(
+    begin: const Offset(0.0, 0.2),
+    end: const Offset(0.00, 0.0),
+  ).animate(CurvedAnimation(
+    parent: _left,
+    curve: Curves.ease,
+  ));
+  // late final AnimationController _right = AnimationController(
+  //   duration: const Duration(milliseconds: 2000),
+  //   vsync: this,
+  // );
+  // late final Animation<Offset> _offsetAnimation1 = Tween<Offset>(
+  //   begin: Offset(0.0, 0.2),
+  //   end: const Offset(0.0, 0.0),
+  // ).animate(CurvedAnimation(
+  //   parent: _right,
+  //   curve: Curves.ease,
+  // ));
+  @override
   initState() {
     super.initState();
 
     _controller = AnimationController(
-        duration: const Duration(milliseconds: 5000),
+        duration: const Duration(milliseconds: 2000),
         vsync: this,
         value: 0,
         lowerBound: 0,
@@ -32,6 +53,7 @@ class _ProjectState extends State<Project> with TickerProviderStateMixin {
     _controller.dispose();
     super.dispose();
   }
+  @override
   Widget build(BuildContext context) {
     return Column(
       children: [
@@ -49,73 +71,77 @@ class _ProjectState extends State<Project> with TickerProviderStateMixin {
           color: Color(0xffEFEFEF),
           thickness: 2,
         ),
-        FadeTransition(
-          opacity: _animation,
-          child: MouseRegion(
-            onEnter: (event){
-              _controller.forward();
-            },
-            child: SizedBox(
-              height: 360,
-              width: MediaQuery.of(context).size.width,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const Header(
-                          padding: EdgeInsets.only(top: 20),
-                          text: "MOB HRM",
-                          fontSize: 30,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold),
-                      const SizedBox(
-                        height: 50,
-                      ),
-                      SizedBox(
-                        height: 250,
-                        width: MediaQuery.of(context).size.width / 3,
-                        child: const Text(
-                          "Responsible for the design,build,deployment ,debug & maintenance of Android application for Google play and App Store.\n"
-                              "Mob's HRM is an in-house app for Mobcoder employee contains employee’s daily Attendance ,"
-                              "Leave Record,Project Record,Reimbursement Holiday list and many more.",
-                          style: TextStyle(
-                              fontSize: 20, color: Colors.black),
+        SlideTransition(
+          position: _offsetAnimation,
+          child: FadeTransition(
+            opacity: _animation,
+            child: MouseRegion(
+              onEnter: (event){
+                _controller.forward();
+                _left.forward();
+              },
+              child: SizedBox(
+                height: 360,
+                width: MediaQuery.of(context).size.width,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const Header(
+                            padding: EdgeInsets.only(top: 20),
+                            text: "MOB HRM",
+                            fontSize: 30,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold),
+                        const SizedBox(
+                          height: 50,
                         ),
-                      )
-                    ],
-                  ),
-                  const SizedBox(
-                    width: 200,
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const Header(
-                          padding: EdgeInsets.only(top: 20),
-                          text: "MOB KITCHEN",
-                          fontSize: 30,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold),
-                      const SizedBox(
-                        height: 50,
-                      ),
-                      SizedBox(
-                        height: 250,
-                        width: MediaQuery.of(context).size.width / 3,
-                        child: const Text(
-                          "Mob's Kitchen is an in-house app for Mobcoder employee in which user can place their orders with any desired vendor.",
-                          style: TextStyle(
-                              fontSize: 20, color: Colors.black),
+                        SizedBox(
+                          height: 250,
+                          width: MediaQuery.of(context).size.width / 3,
+                          child: const Text(
+                            "Responsible for the design,build,deployment ,debug & maintenance of Android application for Google play and App Store.\n"
+                                "Mob's HRM is an in-house app for Mobcoder employee contains employee’s daily Attendance ,"
+                                "Leave Record,Project Record,Reimbursement Holiday list and many more.",
+                            style: TextStyle(
+                                fontSize: 20, color: Colors.black),
+                          ),
+                        )
+                      ],
+                    ),
+                    const SizedBox(
+                      width: 200,
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const Header(
+                            padding: EdgeInsets.only(top: 20),
+                            text: "MOB KITCHEN",
+                            fontSize: 30,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold),
+                        const SizedBox(
+                          height: 50,
                         ),
-                      )
-                    ],
-                  ),
-                ],
+                        SizedBox(
+                          height: 250,
+                          width: MediaQuery.of(context).size.width / 3,
+                          child: const Text(
+                            "Mob's Kitchen is an in-house app for Mobcoder employee in which user can place their orders with any desired vendor.",
+                            style: TextStyle(
+                                fontSize: 20, color: Colors.black),
+                          ),
+                        )
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

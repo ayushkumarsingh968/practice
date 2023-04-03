@@ -20,15 +20,36 @@ class Education extends StatefulWidget {
 }
 
 class _EducationState extends State<Education> with TickerProviderStateMixin {
-  @override
   late AnimationController _controller;
   late Animation<double> _animation;
-
+  late final AnimationController _left = AnimationController(
+    duration: const Duration(milliseconds: 2000),
+    vsync: this,
+  );
+  late final Animation<Offset> _offsetAnimation = Tween<Offset>(
+    begin: const Offset(-0.5, 0.0),
+    end: const Offset(0.00, 0.0),
+  ).animate(CurvedAnimation(
+    parent: _left,
+    curve: Curves.ease,
+  ));
+  late final AnimationController _right = AnimationController(
+    duration: const Duration(milliseconds: 2000),
+    vsync: this,
+  );
+  late final Animation<Offset> _offsetAnimation1 = Tween<Offset>(
+    begin: const Offset(0.5, 0.0),
+    end: const Offset(0.0, 0.0),
+  ).animate(CurvedAnimation(
+    parent: _right,
+    curve: Curves.ease,
+  ));
+  @override
   initState() {
     super.initState();
 
     _controller = AnimationController(
-        duration: const Duration(milliseconds: 5000),
+        duration: const Duration(milliseconds: 2000),
         vsync: this,
         value: 0,
         lowerBound: 0,
@@ -40,8 +61,11 @@ class _EducationState extends State<Education> with TickerProviderStateMixin {
   @override
   dispose() {
     _controller.dispose();
+    _left.dispose();
+    _right.dispose();
     super.dispose();
   }
+  @override
   Widget build(BuildContext context) {
     return Column(
       children: [
@@ -64,6 +88,8 @@ class _EducationState extends State<Education> with TickerProviderStateMixin {
           child: MouseRegion(
             onEnter: (event){
                 _controller.forward();
+                _left.forward();
+                _right.forward();
             },
             child: Padding(
               padding: const EdgeInsets.only(top: 20),
@@ -73,48 +99,54 @@ class _EducationState extends State<Education> with TickerProviderStateMixin {
                 child: FixedTimeline.tileBuilder(
                   builder: TimelineTileBuilder.connectedFromStyle(
                     contentsAlign: ContentsAlign.basic,
-                    oppositeContentsBuilder: (context, index) => Padding(
-                      padding: const EdgeInsets.only(right: 30),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Header(
-                            padding: const EdgeInsets.only(top: 40, left: 15),
-                            text: detailList[index].heading,
-                            fontSize: 25,
-                            color: const Color(0xff182153),
-                            fontWeight: null,
-                          ),
-                          Header(
-                            padding: const EdgeInsets.only(top: 20, left: 15),
-                            text: detailList[index].subHeading,
-                            fontSize: 20,
-                            color: const Color(0xff182153),
-                            fontWeight: null,
-                          ),
-                        ],
-                      ),
-                    ),
-                    contentsBuilder: (context, index) => Padding(
-                      padding: const EdgeInsets.only(left: 30),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Header(
+                    oppositeContentsBuilder: (context, index) => SlideTransition(
+                      position: _offsetAnimation,
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 30),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Header(
                               padding: const EdgeInsets.only(top: 40, left: 15),
-                              text: detailList[index].contentHeading,
+                              text: detailList[index].heading,
                               fontSize: 25,
                               color: const Color(0xff182153),
-                              fontWeight: null),
-                          Header(
+                              fontWeight: null,
+                            ),
+                            Header(
                               padding: const EdgeInsets.only(top: 20, left: 15),
-                              text: detailList[index].contentSubHeading,
+                              text: detailList[index].subHeading,
                               fontSize: 20,
                               color: const Color(0xff182153),
-                              fontWeight: null),
-                        ],
+                              fontWeight: null,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    contentsBuilder: (context, index) => SlideTransition(
+                      position: _offsetAnimation1,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 30),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Header(
+                                padding: const EdgeInsets.only(top: 40, left: 15),
+                                text: detailList[index].contentHeading,
+                                fontSize: 25,
+                                color: const Color(0xff182153),
+                                fontWeight: null),
+                            Header(
+                                padding: const EdgeInsets.only(top: 20, left: 15),
+                                text: detailList[index].contentSubHeading,
+                                fontSize: 20,
+                                color: const Color(0xff182153),
+                                fontWeight: null),
+                          ],
+                        ),
                       ),
                     ),
                     connectorStyleBuilder: (context, index) =>
