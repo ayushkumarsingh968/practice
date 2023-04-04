@@ -42,7 +42,7 @@ class _ContactState extends State<Contact> with TickerProviderStateMixin {
     curve: Curves.ease,
   ));
   @override
-  initState() {
+  void initState() {
     super.initState();
     // super.initState();
     // _right = AnimationController(duration: const Duration(milliseconds: 5000),
@@ -66,201 +66,397 @@ class _ContactState extends State<Contact> with TickerProviderStateMixin {
   }
 
   @override
-  dispose() {
+  void dispose() {
     _controller.dispose();
     _right.dispose();
     super.dispose();
   }
   @override
   Widget build(BuildContext context) {
-    return MouseRegion(
-      onEnter: (event){
-        _controller.forward();
-        _right.forward();
-      },
-      child: Container(
-        height: 661,
-        width: MediaQuery.of(context).size.width,
-        color: const Color(0xffEFEFEF),
-        child: Column(
-          children: [
-            const Header(
-                padding: EdgeInsets.only(top: 20, left: 15),
-                text: "CONTACT ME",
-                fontSize: 35,
-                color: Color(0xff182153),
-                fontWeight: null),
-            const Divider(
-              color: Colors.white,
-              thickness: 2,
-            ),
-            IntrinsicHeight(
-              child: Row(
+    return LayoutBuilder(
+      builder: (context, dimens) {
+        if (dimens.maxWidth > 746) {
+          return  MouseRegion(
+            onEnter: (event){
+              _controller.forward();
+              _right.forward();
+            },
+            child: Container(
+              height: 661,
+              width: MediaQuery.of(context).size.width,
+              color: const Color(0xffEFEFEF),
+              child: Column(
                 children: [
-                  Padding(
-                    padding: EdgeInsets.only(
-                        left: MediaQuery.of(context).size.width / 6, top: 50),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            ContactField(
-                              title: "First Name",
-                              height: 50,
-                              width: MediaQuery.of(context).size.width / 8,
-                              controller: firstnameController,
-                            ),
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width / 50,
-                            ),
-                            ContactField(
-                              title: "Last Name",
-                              height: 50,
-                              width: MediaQuery.of(context).size.width / 8,
-                              controller: lastnameController,
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        ContactField(
-                            title: "Email",
-                            height: 50,
-                            width: MediaQuery.of(context).size.width / 3.75,
-                            controller: emailController),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        ContactField(
-                            title: "Type your message here...",
-                            height: 150,
-                            width: MediaQuery.of(context).size.width / 3.75,
-                            controller: messageController),
-                        const SizedBox(
-                          width: 20,
-                        ),
-                        SizedBox(
-                          height: 50,
-                          width: MediaQuery.of(context).size.width / 3.75,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color(0xff182153),
-                              textStyle: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20,
-                                  fontStyle: FontStyle.normal),
-                            ),
-                            onPressed: () {},
-                            child: const Text('Submit'),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width / 18,
-                  ),
-                  const VerticalDivider(
-                    thickness: 2,
+                  const Header(
+                      padding: EdgeInsets.only(top: 20, left: 15),
+                      text: "CONTACT ME",
+                      fontSize: 35,
+                      color: Color(0xff182153),
+                      fontWeight: null),
+                  const Divider(
                     color: Colors.white,
+                    thickness: 2,
                   ),
-                  Flexible(
-                    child: IntrinsicHeight(
-                      child: SlideTransition(
-                        position: _offsetAnimation1,
-                        child: FadeTransition(
-                          opacity: _animation,
+                  IntrinsicHeight(
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(
+                              left: MediaQuery.of(context).size.width / 6, top: 50),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
-                                  Header(
-                                      padding: EdgeInsets.only(left: 80, top: 0),
-                                      text: "Ayush Kumar Singh",
-                                      fontSize: 30,
-                                      color: Color(0xff182153),
-                                      fontWeight: null),
-                                  Header(
-                                      padding: EdgeInsets.only(left: 80, top: 10),
-                                      text: "Flutter Developer",
-                                      fontSize: 15,
-                                      color: Color(0xff182153),
-                                      fontWeight: null),
-                                ],
-                              ),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
-                                  Header(
-                                      padding: EdgeInsets.only(left: 80, top: 30),
-                                      text: "Phone",
-                                      fontSize: 20,
-                                      color: Color(0xff182153),
-                                      fontWeight: null),
-                                  Header(
-                                      padding: EdgeInsets.only(left: 80, top: 10),
-                                      text: "8707091632",
-                                      fontSize: 15,
-                                      color: Color(0xff182153),
-                                      fontWeight: null),
-                                ],
-                              ),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
-                                  Header(
-                                      padding: EdgeInsets.only(left: 80, top: 30),
-                                      text: "Email",
-                                      fontSize: 20,
-                                      color: Color(0xff182153),
-                                      fontWeight: null),
-                                  Header(
-                                      padding: EdgeInsets.only(left: 80, top: 10),
-                                      text: "ayushkumarsingh968@gmail.com",
-                                      fontSize: 15,
-                                      color: Color(0xff182153),
-                                      fontWeight: null),
+                              Row(
+                                children: [
+                                  ContactField(
+                                    title: "First Name",
+                                    height: 50,
+                                    width: MediaQuery.of(context).size.width / 8,
+                                    controller: firstnameController,
+                                  ),
+                                  SizedBox(
+                                    width: MediaQuery.of(context).size.width / 50,
+                                  ),
+                                  ContactField(
+                                    title: "Last Name",
+                                    height: 50,
+                                    width: MediaQuery.of(context).size.width / 8,
+                                    controller: lastnameController,
+                                  ),
                                 ],
                               ),
                               const SizedBox(
-                                height: 70,
+                                height: 20,
                               ),
-                              Divider(
-                                color: Colors.black,
-                                thickness: 2,
-                                endIndent: MediaQuery.of(context).size.width / 5,
-                                indent: 80,
-                              ),
+                              ContactField(
+                                  title: "Email",
+                                  height: 50,
+                                  width: MediaQuery.of(context).size.width / 3.75,
+                                  controller: emailController),
                               const SizedBox(
-                                height: 10,
+                                height: 20,
                               ),
-                              const Padding(
-                                padding: EdgeInsets.only(left: 80, top: 20),
-                                child: SocialMedia(
-                                  alignment: MainAxisAlignment.start,
+                              ContactField(
+                                  title: "Type your message here...",
+                                  height: 150,
+                                  width: MediaQuery.of(context).size.width / 3.75,
+                                  controller: messageController),
+                              const SizedBox(
+                                width: 20,
+                              ),
+                              SizedBox(
+                                height: 50,
+                                width: MediaQuery.of(context).size.width / 3.75,
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: const Color(0xff182153),
+                                    textStyle: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 20,
+                                        fontStyle: FontStyle.normal),
+                                  ),
+                                  onPressed: () {},
+                                  child: const Text('Submit'),
                                 ),
                               ),
                             ],
                           ),
                         ),
-                      ),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width / 18,
+                        ),
+                        const VerticalDivider(
+                          thickness: 2,
+                          color: Colors.white,
+                        ),
+                        Flexible(
+                          child: IntrinsicHeight(
+                            child: SlideTransition(
+                              position: _offsetAnimation1,
+                              child: FadeTransition(
+                                opacity: _animation,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Column(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: const [
+                                        Header(
+                                            padding: EdgeInsets.only(left: 80, top: 0),
+                                            text: "Ayush Kumar Singh",
+                                            fontSize: 30,
+                                            color: Color(0xff182153),
+                                            fontWeight: null),
+                                        Header(
+                                            padding: EdgeInsets.only(left: 80, top: 10),
+                                            text: "Flutter Developer",
+                                            fontSize: 15,
+                                            color: Color(0xff182153),
+                                            fontWeight: null),
+                                      ],
+                                    ),
+                                    Column(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: const [
+                                        Header(
+                                            padding: EdgeInsets.only(left: 80, top: 30),
+                                            text: "Phone",
+                                            fontSize: 20,
+                                            color: Color(0xff182153),
+                                            fontWeight: null),
+                                        Header(
+                                            padding: EdgeInsets.only(left: 80, top: 10),
+                                            text: "8707091632",
+                                            fontSize: 15,
+                                            color: Color(0xff182153),
+                                            fontWeight: null),
+                                      ],
+                                    ),
+                                    Column(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: const [
+                                        Header(
+                                            padding: EdgeInsets.only(left: 80, top: 30),
+                                            text: "Email",
+                                            fontSize: 20,
+                                            color: Color(0xff182153),
+                                            fontWeight: null),
+                                        Header(
+                                            padding: EdgeInsets.only(left: 80, top: 10),
+                                            text: "ayushkumarsingh968@gmail.com",
+                                            fontSize: 15,
+                                            color: Color(0xff182153),
+                                            fontWeight: null),
+                                      ],
+                                    ),
+                                    const SizedBox(
+                                      height: 70,
+                                    ),
+                                    Divider(
+                                      color: Colors.black,
+                                      thickness: 2,
+                                      endIndent: MediaQuery.of(context).size.width / 5,
+                                      indent: 80,
+                                    ),
+                                    const SizedBox(
+                                      height: 10,
+                                    ),
+                                    const Padding(
+                                      padding: EdgeInsets.only(left: 80, top: 20),
+                                      child: SocialMedia(
+                                        alignment: MainAxisAlignment.start,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
+                  )
                 ],
               ),
-            )
-          ],
-        ),
-      ),
+            ),
+          );
+        }else {
+          return  MouseRegion(
+            onEnter: (event){
+              _controller.forward();
+              _right.forward();
+            },
+            child: Container(
+              height: 661,
+              width: MediaQuery.of(context).size.width,
+              color: const Color(0xffEFEFEF),
+              child: Column(
+                children: [
+                  const Header(
+                      padding: EdgeInsets.only(top: 20),
+                      text: "CONTACT ME",
+                      fontSize: 35,
+                      color: Color(0xff182153),
+                      fontWeight: null),
+                  const Divider(
+                    color: Colors.white,
+                    thickness: 2,
+                  ),
+                  IntrinsicHeight(
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(
+                              left: MediaQuery.of(context).size.width / 6, top: 50),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  ContactField(
+                                    title: "First Name",
+                                    height: 50,
+                                    width: MediaQuery.of(context).size.width / 8,
+                                    controller: firstnameController,
+                                  ),
+                                  SizedBox(
+                                    width: MediaQuery.of(context).size.width / 50,
+                                  ),
+                                  ContactField(
+                                    title: "Last Name",
+                                    height: 50,
+                                    width: MediaQuery.of(context).size.width / 8,
+                                    controller: lastnameController,
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              ContactField(
+                                  title: "Email",
+                                  height: 50,
+                                  width: MediaQuery.of(context).size.width / 3.75,
+                                  controller: emailController),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              ContactField(
+                                  title: "Type your message here...",
+                                  height: 150,
+                                  width: MediaQuery.of(context).size.width / 3.75,
+                                  controller: messageController),
+                              const SizedBox(
+                                width: 20,
+                              ),
+                              SizedBox(
+                                height: 50,
+                                width: MediaQuery.of(context).size.width / 3.75,
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: const Color(0xff182153),
+                                    textStyle: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 20,
+                                        fontStyle: FontStyle.normal),
+                                  ),
+                                  onPressed: () {},
+                                  child: const Text('Submit'),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width / 18,
+                        ),
+                        const VerticalDivider(
+                          thickness: 2,
+                          color: Colors.white,
+                        ),
+                        Flexible(
+                          child: IntrinsicHeight(
+                            child: SlideTransition(
+                              position: _offsetAnimation1,
+                              child: FadeTransition(
+                                opacity: _animation,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Column(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: const [
+                                        Header(
+                                            padding: EdgeInsets.only(left: 20, top: 0),
+                                            text: "Ayush Kumar Singh",
+                                            fontSize: 30,
+                                            color: Color(0xff182153),
+                                            fontWeight: null),
+                                        Header(
+                                            padding: EdgeInsets.only(left: 20, top: 10),
+                                            text: "Flutter Developer",
+                                            fontSize: 15,
+                                            color: Color(0xff182153),
+                                            fontWeight: null),
+                                      ],
+                                    ),
+                                    Column(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: const [
+                                        Header(
+                                            padding: EdgeInsets.only(left: 20, top: 30),
+                                            text: "Phone",
+                                            fontSize: 20,
+                                            color: Color(0xff182153),
+                                            fontWeight: null),
+                                        Header(
+                                            padding: EdgeInsets.only(left: 20, top: 10),
+                                            text: "8707091632",
+                                            fontSize: 15,
+                                            color: Color(0xff182153),
+                                            fontWeight: null),
+                                      ],
+                                    ),
+                                    Column(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: const [
+                                        Header(
+                                            padding: EdgeInsets.only(left: 20, top: 30),
+                                            text: "Email",
+                                            fontSize: 20,
+                                            color: Color(0xff182153),
+                                            fontWeight: null),
+                                        Header(
+                                            padding: EdgeInsets.only(left: 20, top: 10),
+                                            text: "ayushkumarsingh968@gmail.com",
+                                            fontSize: 15,
+                                            color: Color(0xff182153),
+                                            fontWeight: null),
+                                      ],
+                                    ),
+                                    const SizedBox(
+                                      height: 20,
+                                    ),
+                                    Divider(
+                                      color: Colors.black,
+                                      thickness: 2,
+                                      endIndent: MediaQuery.of(context).size.width / 20,
+                                      indent: 10,
+                                    ),
+                                    const SizedBox(
+                                      height: 10,
+                                    ),
+                                    const Padding(
+                                      padding: EdgeInsets.only(left: 13, top: 20),
+                                      child: SocialMedia(
+                                        alignment: MainAxisAlignment.start,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+          );
+        }
+      },
     );
   }
 }

@@ -55,98 +55,199 @@ class _ProjectState extends State<Project> with TickerProviderStateMixin {
   }
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const Center(
-            child: Header(
-                padding: EdgeInsets.only(top: 20, left: 15),
-                text: "PROJECTS",
-                fontSize: 35,
-                color: Color(0xff182153),
-                fontWeight: null)),
-        const SizedBox(
-          height: 20,
-        ),
-        const Divider(
-          color: Color(0xffEFEFEF),
-          thickness: 2,
-        ),
-        SlideTransition(
-          position: _offsetAnimation,
-          child: FadeTransition(
-            opacity: _animation,
-            child: MouseRegion(
-              onEnter: (event){
-                _controller.forward();
-                _left.forward();
-              },
-              child: SizedBox(
-                height: 360,
-                width: MediaQuery.of(context).size.width,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        const Header(
-                            padding: EdgeInsets.only(top: 20),
-                            text: "MOB HRM",
-                            fontSize: 30,
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold),
-                        const SizedBox(
-                          height: 50,
-                        ),
-                        SizedBox(
-                          height: 250,
-                          width: MediaQuery.of(context).size.width / 3,
-                          child: const Text(
-                            "Responsible for the design,build,deployment ,debug & maintenance of Android application for Google play and App Store.\n"
-                                "Mob's HRM is an in-house app for Mobcoder employee contains employee’s daily Attendance ,"
-                                "Leave Record,Project Record,Reimbursement Holiday list and many more.",
-                            style: TextStyle(
-                                fontSize: 20, color: Colors.black),
-                          ),
-                        )
-                      ],
-                    ),
-                    const SizedBox(
-                      width: 200,
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        const Header(
-                            padding: EdgeInsets.only(top: 20),
-                            text: "MOB KITCHEN",
-                            fontSize: 30,
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold),
-                        const SizedBox(
-                          height: 50,
-                        ),
-                        SizedBox(
-                          height: 250,
-                          width: MediaQuery.of(context).size.width / 3,
-                          child: const Text(
-                            "Mob's Kitchen is an in-house app for Mobcoder employee in which user can place their orders with any desired vendor.",
-                            style: TextStyle(
-                                fontSize: 20, color: Colors.black),
-                          ),
-                        )
-                      ],
-                    ),
-                  ],
+    return LayoutBuilder(
+      builder: (context, dimens) {
+        if (dimens.maxWidth > 1035){
+          return  MouseRegion(
+            onEnter: (event){
+              _controller.forward();
+              _left.forward();
+            },
+            child: Column(
+              children: [
+                const Center(
+                    child: Header(
+                        padding: EdgeInsets.only(top: 20, left: 15),
+                        text: "PROJECTS",
+                        fontSize: 35,
+                        color: Color(0xff182153),
+                        fontWeight: null)),
+                const SizedBox(
+                  height: 20,
                 ),
-              ),
+                const Divider(
+                  color: Color(0xffEFEFEF),
+                  thickness: 2,
+                ),
+                SlideTransition(
+                  position: _offsetAnimation,
+                  child: FadeTransition(
+                    opacity: _animation,
+                    child: SizedBox(
+                      height: 360,
+                      width: MediaQuery.of(context).size.width,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              const Header(
+                                  padding: EdgeInsets.only(top: 20),
+                                  text: "MOB HRM",
+                                  fontSize: 30,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
+                              const SizedBox(
+                                height: 50,
+                              ),
+                              SizedBox(
+                                height: 250,
+                                width: MediaQuery.of(context).size.width / 3,
+                                child: const Text(
+                                  "Responsible for the design,build,deployment ,debug & maintenance of Android application for Google play and App Store.\n"
+                                      "Mob's HRM is an in-house app for Mobcoder employee contains employee’s daily Attendance ,"
+                                      "Leave Record,Project Record,Reimbursement Holiday list and many more.",
+                                  style: TextStyle(
+                                      fontSize: 20, color: Colors.black),
+                                ),
+                              )
+                            ],
+                          ),
+                          const SizedBox(
+                            width: 200,
+                          ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              const Header(
+                                  padding: EdgeInsets.only(top: 20),
+                                  text: "MOB KITCHEN",
+                                  fontSize: 30,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
+                              const SizedBox(
+                                height: 50,
+                              ),
+                              SizedBox(
+                                height: 250,
+                                width: MediaQuery.of(context).size.width / 3,
+                                child: const Text(
+                                  "Mob's Kitchen is an in-house app for Mobcoder employee in which user can place their orders with any desired vendor.",
+                                  style: TextStyle(
+                                      fontSize: 20, color: Colors.black),
+                                ),
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ),
-        ),
-      ],
+          );
+        }
+        else {
+          return MouseRegion(
+            onEnter: (event){
+              _controller.forward();
+              _left.forward();
+            },
+            child: Column(
+              children: [
+                const Center(
+                    child: Header(
+                        padding: EdgeInsets.only(top: 20, left: 15),
+                        text: "PROJECTS",
+                        fontSize: 35,
+                        color: Color(0xff182153),
+                        fontWeight: null)),
+                const SizedBox(
+                  height: 20,
+                ),
+                const Divider(
+                  color: Color(0xffEFEFEF),
+                  thickness: 2,
+                ),
+                SlideTransition(
+                  position: _offsetAnimation,
+                  child: FadeTransition(
+                    opacity: _animation,
+                    child: SizedBox(
+                      height: 380,
+                      width: MediaQuery.of(context).size.width,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              const Header(
+                                  padding: EdgeInsets.only(top: 20),
+                                  text: "MOB HRM",
+                                  fontSize: 30,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
+                              const SizedBox(
+                                height: 50,
+                              ),
+                              SizedBox(
+                                height: 250,
+                                width: MediaQuery.of(context).size.width / 3,
+                                child: const Text(
+                                  "Responsible for the design,build,deployment ,debug & maintenance of Android application for Google play and App Store.\n"
+                                      "Mob's HRM is an in-house app for Mobcoder employee contains employee’s daily Attendance ,"
+                                      "Leave Record,Project Record,Reimbursement Holiday list and many more.",
+                                  style: TextStyle(
+                                      fontSize: 20, color: Colors.black),
+                                ),
+                              )
+                            ],
+                          ),
+                          const SizedBox(
+                            width: 50,
+                          ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              const Header(
+                                  padding: EdgeInsets.only(top: 20),
+                                  text: "MOB KITCHEN",
+                                  fontSize: 30,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
+                              const SizedBox(
+                                height: 50,
+                              ),
+                              SizedBox(
+                                height: 250,
+                                width: MediaQuery.of(context).size.width / 3,
+                                child: const Text(
+                                  "Mob's Kitchen is an in-house app for Mobcoder employee in which user can place their orders with any desired vendor.",
+                                  style: TextStyle(
+                                      fontSize: 20, color: Colors.black),
+                                ),
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
+        }
+      },
     );
   }
 }

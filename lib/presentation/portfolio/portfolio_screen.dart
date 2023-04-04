@@ -16,8 +16,8 @@ class PortfolioScreen extends StatefulWidget {
   State<PortfolioScreen> createState() => _PortfolioScreenState();
 }
 
-class _PortfolioScreenState extends State<PortfolioScreen> with TickerProviderStateMixin {
-
+class _PortfolioScreenState extends State<PortfolioScreen>
+    with TickerProviderStateMixin {
   // List<String> skill = [
   //   "Flutter",
   //   "Dart",
@@ -67,6 +67,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> with TickerProviderSt
     parent: _right,
     curve: Curves.ease,
   ));
+
   @override
   void initState() {
     super.initState();
@@ -76,9 +77,9 @@ class _PortfolioScreenState extends State<PortfolioScreen> with TickerProviderSt
         vsync: this,
         value: 0,
         lowerBound: 0,
-        upperBound: 1
-    );
-    _animation = CurvedAnimation(parent: _animationController, curve: Curves.fastOutSlowIn);
+        upperBound: 1);
+    _animation = CurvedAnimation(
+        parent: _animationController, curve: Curves.fastOutSlowIn);
 
     _animationController.forward();
   }
@@ -91,354 +92,815 @@ class _PortfolioScreenState extends State<PortfolioScreen> with TickerProviderSt
 
   @override
   Widget build(BuildContext context) {
+    double maxWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Column(
         children: [
-          SizedBox(
-            height: 101,
-            width: MediaQuery.of(context).size.width,
-            child: Row(
-              children:  [
-                const Header(
-                  padding: EdgeInsets.only(top: 20, left: 15),
-                  text: "Ayush Kumar Singh",
-                  fontSize: 30,
-                  color: Color(0xff182153),
-                  fontWeight: FontWeight.bold,
-                ),
-                const Spacer(),
-                GestureDetector(
-                  onTap: (){
-                    _controller.animateTo(
-                      1000,
-                    duration: const Duration(seconds: 1),
-                    curve: Curves.fastOutSlowIn,
-                    );
-                  },
-                  child: const Heading(
-                    padding: EdgeInsets.only(top: 20, left: 15),
-                    text: "EXPERIENCE",
-                    fontSize: 15,
-                    color: Color(0xff182153),
-                    fontWeight: FontWeight.bold,
+          LayoutBuilder(
+            builder: (context, dimens) {
+              if (dimens.maxWidth > 1035) {
+                return SizedBox(
+                  height: 101,
+                  width: MediaQuery.of(context).size.width,
+                  child: Row(
+                    children: [
+                      const Header(
+                        padding: EdgeInsets.only(top: 20, left: 15),
+                        text: "Ayush Kumar Singh",
+                        fontSize: 30,
+                        color: Color(0xff182153),
+                        fontWeight: FontWeight.bold,
+                      ),
+                      const Spacer(),
+                      GestureDetector(
+                        onTap: () {
+                          _controller.animateTo(
+                            1000,
+                            duration: const Duration(seconds: 1),
+                            curve: Curves.fastOutSlowIn,
+                          );
+                        },
+                        child: const Heading(
+                          padding: EdgeInsets.only(top: 20, left: 15),
+                          text: "EXPERIENCE",
+                          fontSize: 15,
+                          color: Color(0xff182153),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 50,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          _controller.animateTo(
+                            1700,
+                            duration: const Duration(seconds: 1),
+                            curve: Curves.fastOutSlowIn,
+                          );
+                        },
+                        child: const Heading(
+                          padding: EdgeInsets.only(top: 20, left: 15),
+                          text: "EDUCATION",
+                          fontSize: 15,
+                          color: Color(0xff182153),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 50,
+                      ),
+                      // Header(
+                      //   padding: EdgeInsets.only(top: 20, left: 15),
+                      //   text: "Clients",
+                      //   fontSize: 20,
+                      //   color: Color(0xff182153),
+                      //   fontWeight: FontWeight.bold,
+                      // ),
+                      // SizedBox(
+                      //   width: 50,
+                      // ),
+                      GestureDetector(
+                        onTap: () {
+                          _controller.animateTo(
+                            2300,
+                            duration: const Duration(seconds: 1),
+                            curve: Curves.fastOutSlowIn,
+                          );
+                        },
+                        child: const Heading(
+                          padding: EdgeInsets.only(top: 20, left: 15),
+                          text: "SKILLS",
+                          fontSize: 15,
+                          color: Color(0xff182153),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 50,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          _controller.animateTo(
+                            2800,
+                            duration: const Duration(seconds: 1),
+                            curve: Curves.fastOutSlowIn,
+                          );
+                        },
+                        child: const Heading(
+                          padding: EdgeInsets.only(top: 20, left: 15),
+                          text: "PROJECTS",
+                          fontSize: 15,
+                          color: Color(0xff182153),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 50,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          _controller.animateTo(
+                            3200,
+                            duration: const Duration(seconds: 1),
+                            curve: Curves.fastOutSlowIn,
+                          );
+                        },
+                        child: const Heading(
+                          padding: EdgeInsets.only(top: 20, left: 15),
+                          text: "CONTACT",
+                          fontSize: 15,
+                          color: Color(0xff182153),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 50,
+                      ),
+                    ],
                   ),
-                ),
-                const SizedBox(
-                  width: 50,
-                ),
-                GestureDetector(
-                  onTap: (){
-                    _controller.animateTo(
-                      1700,
-                    duration: const Duration(seconds: 1),
-                    curve: Curves.fastOutSlowIn,
-                    );
-                  },
-                  child: const Heading(
-                    padding: EdgeInsets.only(top: 20, left: 15),
-                    text: "EDUCATION",
-                    fontSize: 15,
-                    color: Color(0xff182153),
-                    fontWeight: FontWeight.bold,
+                );
+              } else {
+                return SizedBox(
+                  height: 101,
+                  width: MediaQuery.of(context).size.width,
+                  child: Row(
+                    children: [
+                      const Header(
+                        padding: EdgeInsets.only(top: 20, left: 15),
+                        text: "Ayush Kumar Singh",
+                        fontSize: 30,
+                        color: Color(0xff182153),
+                        fontWeight: FontWeight.bold,
+                      ),
+                      const Spacer(),
+                      Padding(
+                        padding: const EdgeInsets.only(top:20,right: 30),
+                        child: GestureDetector(
+                            onTap: () {
+                              Scaffold.of(context).openDrawer();
+                            },
+                            child: const Icon(Icons.menu)),
+                      ),
+                    ],
                   ),
-                ),
-                const SizedBox(
-                  width: 50,
-                ),
-                // Header(
-                //   padding: EdgeInsets.only(top: 20, left: 15),
-                //   text: "Clients",
-                //   fontSize: 20,
-                //   color: Color(0xff182153),
-                //   fontWeight: FontWeight.bold,
-                // ),
-                // SizedBox(
-                //   width: 50,
-                // ),
-                GestureDetector(
-                  onTap: (){
-                    _controller.animateTo(
-                      2300,
-                    duration: const Duration(seconds: 1),
-                    curve: Curves.fastOutSlowIn,
-                    );
-                  },
-                  child: const Heading(
-                    padding: EdgeInsets.only(top: 20, left: 15),
-                    text: "SKILLS",
-                    fontSize: 15,
-                    color: Color(0xff182153),
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(
-                  width: 50,
-                ),
-                GestureDetector(
-                  onTap: (){
-                    _controller.animateTo(
-                      2800,
-                    duration: const Duration(seconds: 1),
-                    curve: Curves.fastOutSlowIn,
-                    );
-                  },
-                  child: const Heading(
-                    padding: EdgeInsets.only(top: 20, left: 15),
-                    text: "PROJECTS",
-                    fontSize: 15,
-                    color: Color(0xff182153),
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(
-                  width: 50,
-                ),
-                GestureDetector(
-                  onTap: (){
-                    _controller.animateTo(
-                      3200,
-                    duration: const Duration(seconds: 1),
-                    curve: Curves.fastOutSlowIn,
-                    );
-                  },
-                  child: const Heading(
-                    padding: EdgeInsets.only(top: 20, left: 15),
-                    text: "CONTACT",
-                    fontSize: 15,
-                    color: Color(0xff182153),
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(
-                  width: 50,
-                ),
-              ],
-            ),
+                );
+              }
+            },
           ),
           Expanded(
             child: ListView(
               controller: _controller,
               children: [
-                Column(
-                  children: [
-                    Stack(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(top: 20),
-                          child: Photo(
-                              height: 600,
-                              width: MediaQuery.of(context).size.width,
-                              color: null,
-                              image: Image.asset(
-                                "images/background.png",
-                                fit: BoxFit.fill,
-                              )),
-                        ),
-                        Container(
-                          margin: const EdgeInsets.only(top: 20),
-                          height: 600,
-                          width: MediaQuery.of(context).size.width,
-                          color: const Color(0xff182153).withOpacity(0.75),
-                        ),
-                        FadeTransition(
-                          opacity: _animation,
-                          child: Padding(
-                            padding: const EdgeInsets.only(top: 115),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                SlideTransition(
-                                  position: _offsetAnimation,
-                                  child: Photo(
-                                      height: 500,
-                                      width: 500,
-                                      color: const Color(0xffEFEFEF),
-                                      image: Image.asset(
-                                        "images/myImage.jpg",
-                                        fit: BoxFit.fill,
-                                      )),
-                                ),
-                                SlideTransition(
-                                  position: _offsetAnimation1,
-                                  child: Container(
-                                      height: 500,
-                                      width: 500,
-                                      color: const Color(0xffEFEFEF),
-                                      child: Column(
-                                        children: const [
-                                          Header(
-                                            padding:
-                                                EdgeInsets.only(top: 30, left: 20),
-                                            text: 'Ayush Kumar Singh',
-                                            fontSize: 35,
-                                            color: Color(0xff182153),
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                          Header(
-                                            padding:
-                                                EdgeInsets.only(top: 10, left: 20),
-                                            text: 'Flutter Developer',
-                                            fontSize: 25,
-                                            color: Color(0xff182153),
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                          Header(
-                                            padding:
-                                                EdgeInsets.only(top: 25, left: 20),
-                                            text: 'Phone:',
-                                            fontSize: 20,
-                                            color: Color(0xff182153),
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                          Header(
-                                            padding:
-                                                EdgeInsets.only(top: 15, left: 20),
-                                            text: '8707091632',
-                                            fontSize: 15,
-                                            color: Color(0xff182153),
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                          Header(
-                                            padding:
-                                                EdgeInsets.only(top: 25, left: 20),
-                                            text: 'Email:',
-                                            fontSize: 20,
-                                            color: Color(0xff182153),
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                          Header(
-                                            padding:
-                                                EdgeInsets.only(top: 15, left: 20),
-                                            text: 'ayushkumarsingh968@gmail.com',
-                                            fontSize: 15,
-                                            color: Color(0xff182153),
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                          Header(
-                                            padding:
-                                                EdgeInsets.only(top: 25, left: 20),
-                                            text: 'Address:',
-                                            fontSize: 20,
-                                            color: Color(0xff182153),
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                          Header(
-                                            padding:
-                                                EdgeInsets.only(top: 15, left: 20),
-                                            text: 'Noida',
-                                            fontSize: 15,
-                                            color: Color(0xff182153),
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                          Header(
-                                            padding:
-                                                EdgeInsets.only(top: 25, left: 20),
-                                            text: 'Date Of Birth:',
-                                            fontSize: 20,
-                                            color: Color(0xff182153),
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                          Header(
-                                            padding:
-                                                EdgeInsets.only(top: 15, left: 20),
-                                            text: '17/11/1999',
-                                            fontSize: 15,
-                                            color: Color(0xff182153),
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ],
-                                      )),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Stack(
-                      children: [
-                        Container(
-                          height: 475,
-                          width: MediaQuery.of(context).size.width,
-                          color: const Color(0xffEFEFEF),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: const [
-                              Header(
-                                padding: EdgeInsets.only(top: 100, left: 15),
-                                text: "Hello! I'm Ayush",
-                                fontSize: 20,
-                                color: null,
-                                fontWeight: null,
+                LayoutBuilder(
+                  builder: (context, dimens) {
+                    if (dimens.maxWidth > 1035) {
+                      return Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Stack(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(top: 20),
+                                child: Photo(
+                                    height: 600,
+                                    width: MediaQuery.of(context).size.width,
+                                    color: null,
+                                    image: Image.asset(
+                                      "images/background.png",
+                                      fit: BoxFit.fill,
+                                    )),
                               ),
-                              SizedBox(
-                                height: 30,
+                              Container(
+                                margin: const EdgeInsets.only(top: 20),
+                                height: 600,
+                                width: MediaQuery.of(context).size.width,
+                                color:
+                                    const Color(0xff182153).withOpacity(0.75),
                               ),
-                              SizedBox(
-                                height: 200,
-                                width: 700,
-                                child: Text(
-                                  "As a self-driven Flutter Developer with 1.5+"
-                                  "years of experience, I strive for"
-                                  "excellence and aim to be the most prized "
-                                  "possession of any organization."
-                                  "With a passion for continuous learning "
-                                  "and a hunger"
-                                  "for new technologies, I'm a quick study "
-                                  "and eager to expand my skill set."
-                                  "Let's create something amazing together!",
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(fontSize: 20),
+                              FadeTransition(
+                                opacity: _animation,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(top: 115),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                    MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                    CrossAxisAlignment.center,
+                                    children: [
+                                      SlideTransition(
+                                        position: _offsetAnimation,
+                                        child: Photo(
+                                            height: 500,
+                                            width: 500,
+                                            color: const Color(0xffEFEFEF),
+                                            image: Image.asset(
+                                              "images/myImage.jpg",
+                                              fit: BoxFit.fill,
+                                            )),
+                                      ),
+                                      SlideTransition(
+                                        position: _offsetAnimation1,
+                                        child: Container(
+                                            height: 500,
+                                            width: 500,
+                                            color: const Color(0xffEFEFEF),
+                                            child: Column(
+                                              children: const [
+                                                Header(
+                                                  padding: EdgeInsets.only(
+                                                      top: 30, left: 20),
+                                                  text: 'Ayush Kumar Singh',
+                                                  fontSize: 35,
+                                                  color: Color(0xff182153),
+                                                  fontWeight:
+                                                  FontWeight.bold,
+                                                ),
+                                                Header(
+                                                  padding: EdgeInsets.only(
+                                                      top: 10, left: 20),
+                                                  text: 'Flutter Developer',
+                                                  fontSize: 25,
+                                                  color: Color(0xff182153),
+                                                  fontWeight:
+                                                  FontWeight.bold,
+                                                ),
+                                                Header(
+                                                  padding: EdgeInsets.only(
+                                                      top: 25, left: 20),
+                                                  text: 'Phone:',
+                                                  fontSize: 20,
+                                                  color: Color(0xff182153),
+                                                  fontWeight:
+                                                  FontWeight.bold,
+                                                ),
+                                                Header(
+                                                  padding: EdgeInsets.only(
+                                                      top: 15, left: 20),
+                                                  text: '8707091632',
+                                                  fontSize: 15,
+                                                  color: Color(0xff182153),
+                                                  fontWeight:
+                                                  FontWeight.bold,
+                                                ),
+                                                Header(
+                                                  padding: EdgeInsets.only(
+                                                      top: 25, left: 20),
+                                                  text: 'Email:',
+                                                  fontSize: 20,
+                                                  color: Color(0xff182153),
+                                                  fontWeight:
+                                                  FontWeight.bold,
+                                                ),
+                                                Header(
+                                                  padding: EdgeInsets.only(
+                                                      top: 15, left: 20),
+                                                  text:
+                                                  'ayushkumarsingh968@gmail.com',
+                                                  fontSize: 15,
+                                                  color: Color(0xff182153),
+                                                  fontWeight:
+                                                  FontWeight.bold,
+                                                ),
+                                                Header(
+                                                  padding: EdgeInsets.only(
+                                                      top: 25, left: 20),
+                                                  text: 'Address:',
+                                                  fontSize: 20,
+                                                  color: Color(0xff182153),
+                                                  fontWeight:
+                                                  FontWeight.bold,
+                                                ),
+                                                Header(
+                                                  padding: EdgeInsets.only(
+                                                      top: 15, left: 20),
+                                                  text: 'Noida',
+                                                  fontSize: 15,
+                                                  color: Color(0xff182153),
+                                                  fontWeight:
+                                                  FontWeight.bold,
+                                                ),
+                                                Header(
+                                                  padding: EdgeInsets.only(
+                                                      top: 25, left: 20),
+                                                  text: 'Date Of Birth:',
+                                                  fontSize: 20,
+                                                  color: Color(0xff182153),
+                                                  fontWeight:
+                                                  FontWeight.bold,
+                                                ),
+                                                Header(
+                                                  padding: EdgeInsets.only(
+                                                      top: 15, left: 20),
+                                                  text: '17/11/1999',
+                                                  fontSize: 15,
+                                                  color: Color(0xff182153),
+                                                  fontWeight:
+                                                  FontWeight.bold,
+                                                ),
+                                              ],
+                                            )),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ],
                           ),
-                        ),
-                        Center(
-                          child: SlideTransition(
-                            position: _offsetAnimation2,
-                            child: FadeTransition(
-                              opacity: _animation,
-                              child: Container(
-                                height: 75,
-                                width: 1000,
-                                color: const Color(0xff182153),
-                                child: const SocialMedia(
-                                  color: Colors.white,
-                                  alignment: MainAxisAlignment.center,
+                          Stack(
+                            children: [
+                              Container(
+                                height: 475,
+                                width: MediaQuery.of(context).size.width,
+                                color: const Color(0xffEFEFEF),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: const [
+                                    Header(
+                                      padding:
+                                          EdgeInsets.only(top: 100, left: 15),
+                                      text: "Hello! I'm Ayush",
+                                      fontSize: 20,
+                                      color: null,
+                                      fontWeight: null,
+                                    ),
+                                    SizedBox(
+                                      height: 30,
+                                    ),
+                                    SizedBox(
+                                      height: 200,
+                                      width: 700,
+                                      child: Text(
+                                        "As a self-driven Flutter Developer with 1.5+"
+                                        "years of experience, I strive for"
+                                        "excellence and aim to be the most prized "
+                                        "possession of any organization."
+                                        "With a passion for continuous learning "
+                                        "and a hunger"
+                                        "for new technologies, I'm a quick study "
+                                        "and eager to expand my skill set."
+                                        "Let's create something amazing together!",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(fontSize: 20),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
-                            ),
+                              Center(
+                                child: SlideTransition(
+                                  position: _offsetAnimation2,
+                                  child: FadeTransition(
+                                    opacity: _animation,
+                                    child: Container(
+                                      height: 75,
+                                      width: 1000,
+                                      color: const Color(0xff182153),
+                                      child: const SocialMedia(
+                                        color: Colors.white,
+                                        alignment: MainAxisAlignment.center,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
-                        ),
-                      ],
-                    ),
-                    const Experience(),
-                    const Divider(
-                      color: Color(0xffEFEFEF),
-                      thickness: 2,
-                    ),
-                    const Education(),
-                    const SkillClass(),
-                    const Project(),
-                    const Contact(),
-                    Container(
-                      height: 60,
-                      width: MediaQuery.of(context).size.width,
-                      color: Colors.white,
-                      child: const Center(
-                        child: Text("© 2023 By Ayush Kumar Singh."),
-                      ),
-                    )
-                  ],
+                          const Experience(),
+                          const Divider(
+                            color: Color(0xffEFEFEF),
+                            thickness: 2,
+                          ),
+                          const Education(),
+                          const SkillClass(),
+                          const Project(),
+                          const Contact(),
+                          Container(
+                            height: 60,
+                            width: MediaQuery.of(context).size.width,
+                            color: Colors.white,
+                            child: const Center(
+                              child: Text("© 2023 By Ayush Kumar Singh."),
+                            ),
+                          )
+                        ],
+                      );
+                    } else {
+                      return Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Stack(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(top: 20),
+                                child: Photo(
+                                    height: 1100,
+                                    width: MediaQuery.of(context).size.width,
+                                    color: null,
+                                    image: Image.asset(
+                                      "images/background.png",
+                                      fit: BoxFit.fill,
+                                    )),
+                              ),
+                              Container(
+                                margin: const EdgeInsets.only(top: 20),
+                                height: 1100,
+                                width: MediaQuery.of(context).size.width,
+                                color:
+                                    const Color(0xff182153).withOpacity(0.75),
+                              ),
+                              FadeTransition(
+                                opacity: _animation,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(top: 115),
+                                  child: Center(
+                                    child: Column(
+                                      mainAxisAlignment:
+                                      MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                      CrossAxisAlignment.center,
+                                      children: [
+                                        SlideTransition(
+                                          position: _offsetAnimation,
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(left: 20,right: 20),
+                                            child: Photo(
+                                                height: 500,
+                                                width: 500,
+                                                color:
+                                                const Color(0xffEFEFEF),
+                                                image: Image.asset(
+                                                  "images/myImage.jpg",
+                                                  fit: BoxFit.fill,
+                                                )),
+                                          ),
+                                        ),
+                                        SlideTransition(
+                                          position: _offsetAnimation1,
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(left: 20,right: 20),
+                                            child: Container(
+                                                height: 500,
+                                                width: 500,
+                                                color:
+                                                const Color(0xffEFEFEF),
+                                                child: Column(
+                                                  children: const [
+                                                    Header(
+                                                      padding:
+                                                      EdgeInsets.only(
+                                                          top: 30,
+                                                          left: 20),
+                                                      text:
+                                                      'Ayush Kumar Singh',
+                                                      fontSize: 35,
+                                                      color:
+                                                      Color(0xff182153),
+                                                      fontWeight:
+                                                      FontWeight.bold,
+                                                    ),
+                                                    Header(
+                                                      padding:
+                                                      EdgeInsets.only(
+                                                          top: 10,
+                                                          left: 20),
+                                                      text:
+                                                      'Flutter Developer',
+                                                      fontSize: 25,
+                                                      color:
+                                                      Color(0xff182153),
+                                                      fontWeight:
+                                                      FontWeight.bold,
+                                                    ),
+                                                    Header(
+                                                      padding:
+                                                      EdgeInsets.only(
+                                                          top: 25,
+                                                          left: 20),
+                                                      text: 'Phone:',
+                                                      fontSize: 20,
+                                                      color:
+                                                      Color(0xff182153),
+                                                      fontWeight:
+                                                      FontWeight.bold,
+                                                    ),
+                                                    Header(
+                                                      padding:
+                                                      EdgeInsets.only(
+                                                          top: 15,
+                                                          left: 20),
+                                                      text: '8707091632',
+                                                      fontSize: 15,
+                                                      color:
+                                                      Color(0xff182153),
+                                                      fontWeight:
+                                                      FontWeight.bold,
+                                                    ),
+                                                    Header(
+                                                      padding:
+                                                      EdgeInsets.only(
+                                                          top: 25,
+                                                          left: 20),
+                                                      text: 'Email:',
+                                                      fontSize: 20,
+                                                      color:
+                                                      Color(0xff182153),
+                                                      fontWeight:
+                                                      FontWeight.bold,
+                                                    ),
+                                                    Header(
+                                                      padding:
+                                                      EdgeInsets.only(
+                                                          top: 15,
+                                                          left: 20),
+                                                      text:
+                                                      'ayushkumarsingh968@gmail.com',
+                                                      fontSize: 15,
+                                                      color:
+                                                      Color(0xff182153),
+                                                      fontWeight:
+                                                      FontWeight.bold,
+                                                    ),
+                                                    Header(
+                                                      padding:
+                                                      EdgeInsets.only(
+                                                          top: 25,
+                                                          left: 20),
+                                                      text: 'Address:',
+                                                      fontSize: 20,
+                                                      color:
+                                                      Color(0xff182153),
+                                                      fontWeight:
+                                                      FontWeight.bold,
+                                                    ),
+                                                    Header(
+                                                      padding:
+                                                      EdgeInsets.only(
+                                                          top: 15,
+                                                          left: 20),
+                                                      text: 'Noida',
+                                                      fontSize: 15,
+                                                      color:
+                                                      Color(0xff182153),
+                                                      fontWeight:
+                                                      FontWeight.bold,
+                                                    ),
+                                                    Header(
+                                                      padding:
+                                                      EdgeInsets.only(
+                                                          top: 25,
+                                                          left: 20),
+                                                      text: 'Date Of Birth:',
+                                                      fontSize: 20,
+                                                      color:
+                                                      Color(0xff182153),
+                                                      fontWeight:
+                                                      FontWeight.bold,
+                                                    ),
+                                                    Header(
+                                                      padding:
+                                                      EdgeInsets.only(
+                                                          top: 15,
+                                                          left: 20),
+                                                      text: '17/11/1999',
+                                                      fontSize: 15,
+                                                      color:
+                                                      Color(0xff182153),
+                                                      fontWeight:
+                                                      FontWeight.bold,
+                                                    ),
+                                                  ],
+                                                )),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Stack(
+                            children: [
+                              Container(
+                                height: 475,
+                                width: MediaQuery.of(context).size.width,
+                                color: const Color(0xffEFEFEF),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: const [
+                                    Header(
+                                      padding:
+                                          EdgeInsets.only(top: 100, left: 15),
+                                      text: "Hello! I'm Ayush",
+                                      fontSize: 20,
+                                      color: null,
+                                      fontWeight: null,
+                                    ),
+                                    SizedBox(
+                                      height: 30,
+                                    ),
+                                    SizedBox(
+                                      height: 200,
+                                      width: 700,
+                                      child: Text(
+                                        "As a self-driven Flutter Developer with 1.5+"
+                                        "years of experience, I strive for"
+                                        "excellence and aim to be the most prized "
+                                        "possession of any organization."
+                                        "With a passion for continuous learning "
+                                        "and a hunger"
+                                        "for new technologies, I'm a quick study "
+                                        "and eager to expand my skill set."
+                                        "Let's create something amazing together!",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(fontSize: 20),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Center(
+                                child: SlideTransition(
+                                  position: _offsetAnimation2,
+                                  child: FadeTransition(
+                                    opacity: _animation,
+                                    child: Container(
+                                      height: 75,
+                                      width: 1000,
+                                      color: const Color(0xff182153),
+                                      child: const SocialMedia(
+                                        color: Colors.white,
+                                        alignment: MainAxisAlignment.center,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          const Experience(),
+                          const Divider(
+                            color: Color(0xffEFEFEF),
+                            thickness: 2,
+                          ),
+                          const Education(),
+                          const SkillClass(),
+                          const Project(),
+                          const Contact(),
+                          Container(
+                            height: 60,
+                            width: MediaQuery.of(context).size.width,
+                            color: Colors.white,
+                            child: const Center(
+                              child: Text("© 2023 By Ayush Kumar Singh."),
+                            ),
+                          )
+                        ],
+                      );
+                    }
+                  },
                 ),
               ],
             ),
           ),
         ],
       ),
+      drawer: maxWidth > 1035
+          ? null
+          : Drawer(
+              width: MediaQuery.of(context).size.width,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 450),
+                    child: GestureDetector(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: const Icon(
+                          Icons.close,
+                          color: Colors.black,
+                        )),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      _controller.animateTo(
+                        1000,
+                        duration: const Duration(seconds: 1),
+                        curve: Curves.fastOutSlowIn,
+                      );
+                      Navigator.pop(context);
+                    },
+                    child: const Heading(
+                      padding: EdgeInsets.only(top: 20, left: 15),
+                      text: "EXPERIENCE",
+                      fontSize: 15,
+                      color: Color(0xff182153),
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 50,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      _controller.animateTo(
+                        1700,
+                        duration: const Duration(seconds: 1),
+                        curve: Curves.fastOutSlowIn,
+                      );
+                      Navigator.pop(context);
+                    },
+                    child: const Heading(
+                      padding: EdgeInsets.only(top: 20, left: 15),
+                      text: "EDUCATION",
+                      fontSize: 15,
+                      color: Color(0xff182153),
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 50,
+                  ),
+                  // Header(
+                  //   padding: EdgeInsets.only(top: 20, left: 15),
+                  //   text: "Clients",
+                  //   fontSize: 20,
+                  //   color: Color(0xff182153),
+                  //   fontWeight: FontWeight.bold,
+                  // ),
+                  // SizedBox(
+                  //   width: 50,
+                  // ),
+                  GestureDetector(
+                    onTap: () {
+                      _controller.animateTo(
+                        2300,
+                        duration: const Duration(seconds: 1),
+                        curve: Curves.fastOutSlowIn,
+                      );
+                      Navigator.pop(context);
+                    },
+                    child: const Heading(
+                      padding: EdgeInsets.only(top: 20, left: 15),
+                      text: "SKILLS",
+                      fontSize: 15,
+                      color: Color(0xff182153),
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 50,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      _controller.animateTo(
+                        2800,
+                        duration: const Duration(seconds: 1),
+                        curve: Curves.fastOutSlowIn,
+                      );
+                      Navigator.pop(context);
+                    },
+                    child: const Heading(
+                      padding: EdgeInsets.only(top: 20, left: 15),
+                      text: "PROJECTS",
+                      fontSize: 15,
+                      color: Color(0xff182153),
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 50,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      _controller.animateTo(
+                        3200,
+                        duration: const Duration(seconds: 1),
+                        curve: Curves.fastOutSlowIn,
+                      );
+                      Navigator.pop(context);
+                    },
+                    child: const Heading(
+                      padding: EdgeInsets.only(top: 20, left: 15),
+                      text: "CONTACT",
+                      fontSize: 15,
+                      color: Color(0xff182153),
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 50,
+                  ),
+                ],
+              ),
+            ),
     );
   }
 }

@@ -55,6 +55,7 @@ class _ExperienceState extends State<Experience> with TickerProviderStateMixin {
     parent: _right,
     curve: Curves.ease,
   ));
+
   @override
   initState() {
     super.initState();
@@ -79,110 +80,220 @@ class _ExperienceState extends State<Experience> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const Center(
-            child: Header(
-                padding: EdgeInsets.only(top: 20, left: 15),
-                text: "EXPERIENCE",
-                fontSize: 35,
-                color: Color(0xff182153),
-                fontWeight: null)),
-        const SizedBox(
-          height: 20,
-        ),
-        const Divider(
-          color: Color(0xffEFEFEF),
-          thickness: 2,
-        ),
-        FadeTransition(
-          opacity: _animation,
-          child: MouseRegion(
+    return LayoutBuilder(
+      builder: (context, dimens) {
+        if (dimens.maxWidth > 1035) {
+          return MouseRegion(
             onEnter: (event) {
               _controller.forward();
               _left.forward();
               _right.forward();
-
             },
-            child: Padding(
-              padding: const EdgeInsets.only(top: 20),
-              child: SizedBox(
-                height: 500,
-                width: MediaQuery.of(context).size.width / 1.1,
-                child: FixedTimeline.tileBuilder(
-                  builder: TimelineTileBuilder.connectedFromStyle(
-                    contentsAlign: ContentsAlign.basic,
-                    oppositeContentsBuilder: (context, index) =>
-                        SlideTransition(
-                      position: _offsetAnimation,
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 30),
-                        child: SlideTransition(
-                          position: _offsetAnimation,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Header(
-                                padding:
-                                    const EdgeInsets.only(top: 30, left: 15),
-                                text: infoList[index].heading,
-                                fontSize: 25,
-                                color: const Color(0xff182153),
-                                fontWeight: null,
+            child: Column(
+              children: [
+                const Center(
+                    child: Header(
+                        padding: EdgeInsets.only(top: 20, left: 15),
+                        text: "EXPERIENCE",
+                        fontSize: 35,
+                        color: Color(0xff182153),
+                        fontWeight: null)),
+                const SizedBox(
+                  height: 20,
+                ),
+                const Divider(
+                  color: Color(0xffEFEFEF),
+                  thickness: 2,
+                ),
+                FadeTransition(
+                  opacity: _animation,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: SizedBox(
+                      height: 500,
+                      width: MediaQuery.of(context).size.width / 1.1,
+                      child: FixedTimeline.tileBuilder(
+                        builder: TimelineTileBuilder.connectedFromStyle(
+                          contentsAlign: ContentsAlign.basic,
+                          oppositeContentsBuilder: (context, index) =>
+                              SlideTransition(
+                            position: _offsetAnimation,
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 30),
+                              child: SlideTransition(
+                                position: _offsetAnimation,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Header(
+                                      padding: const EdgeInsets.only(
+                                          top: 30, left: 15),
+                                      text: infoList[index].heading,
+                                      fontSize: 25,
+                                      color: const Color(0xff182153),
+                                      fontWeight: null,
+                                    ),
+                                    Header(
+                                      padding: const EdgeInsets.only(
+                                          top: 20, left: 15),
+                                      text: infoList[index].subHeading,
+                                      fontSize: 20,
+                                      color: const Color(0xff182153),
+                                      fontWeight: null,
+                                    ),
+                                  ],
+                                ),
                               ),
-                              Header(
-                                padding:
-                                    const EdgeInsets.only(top: 20, left: 15),
-                                text: infoList[index].subHeading,
-                                fontSize: 20,
-                                color: const Color(0xff182153),
-                                fontWeight: null,
-                              ),
-                            ],
+                            ),
                           ),
+                          contentsBuilder: (context, index) => SlideTransition(
+                            position: _offsetAnimation1,
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 30),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Header(
+                                      padding: const EdgeInsets.only(
+                                          top: 30, left: 15),
+                                      text: infoList[index].contentHeading,
+                                      fontSize: 25,
+                                      color: const Color(0xff182153),
+                                      fontWeight: null),
+                                  Header(
+                                      padding: const EdgeInsets.only(
+                                          top: 20, left: 15),
+                                      text: infoList[index].contentSubHeading,
+                                      fontSize: 20,
+                                      color: const Color(0xff182153),
+                                      fontWeight: null),
+                                ],
+                              ),
+                            ),
+                          ),
+                          connectorStyleBuilder: (context, index) =>
+                              ConnectorStyle.solidLine,
+                          indicatorStyleBuilder: (context, index) =>
+                              IndicatorStyle.dot,
+                          indicatorPositionBuilder: (context, index) => 0.2,
+                          itemCount: 2,
                         ),
                       ),
                     ),
-                    contentsBuilder: (context, index) => SlideTransition(
-                      position: _offsetAnimation1,
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 30),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Header(
-                                padding:
-                                    const EdgeInsets.only(top: 30, left: 15),
-                                text: infoList[index].contentHeading,
-                                fontSize: 25,
-                                color: const Color(0xff182153),
-                                fontWeight: null),
-                            Header(
-                                padding:
-                                    const EdgeInsets.only(top: 20, left: 15),
-                                text: infoList[index].contentSubHeading,
-                                fontSize: 20,
-                                color: const Color(0xff182153),
-                                fontWeight: null),
-                          ],
-                        ),
-                      ),
-                    ),
-                    connectorStyleBuilder: (context, index) =>
-                        ConnectorStyle.solidLine,
-                    indicatorStyleBuilder: (context, index) =>
-                        IndicatorStyle.dot,
-                    indicatorPositionBuilder: (context, index) => 0.2,
-                    itemCount: 2,
                   ),
                 ),
-              ),
+              ],
             ),
-          ),
-        ),
-      ],
+          );
+        } else {
+          return MouseRegion(
+            onEnter: (event) {
+              _controller.forward();
+              _left.forward();
+              _right.forward();
+            },
+            child: Column(
+              children: [
+                const Center(
+                    child: Header(
+                        padding: EdgeInsets.only(top: 20, left: 15),
+                        text: "EXPERIENCE",
+                        fontSize: 35,
+                        color: Color(0xff182153),
+                        fontWeight: null)),
+                const SizedBox(
+                  height: 20,
+                ),
+                const Divider(
+                  color: Color(0xffEFEFEF),
+                  thickness: 2,
+                ),
+                FadeTransition(
+                  opacity: _animation,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: SizedBox(
+                      height: 900,
+                      width: MediaQuery.of(context).size.width / 1.1,
+                      child: FixedTimeline.tileBuilder(
+                        builder: TimelineTileBuilder.connectedFromStyle(
+                          contentsAlign: ContentsAlign.basic,
+                          oppositeContentsBuilder: (context, index) =>
+                              SlideTransition(
+                            position: _offsetAnimation,
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 30),
+                              child: SlideTransition(
+                                position: _offsetAnimation,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Header(
+                                      padding: const EdgeInsets.only(
+                                          top: 30, left: 15),
+                                      text: infoList[index].heading,
+                                      fontSize: 25,
+                                      color: const Color(0xff182153),
+                                      fontWeight: null,
+                                    ),
+                                    Header(
+                                      padding: const EdgeInsets.only(
+                                          top: 20, left: 15),
+                                      text: infoList[index].subHeading,
+                                      fontSize: 20,
+                                      color: const Color(0xff182153),
+                                      fontWeight: null,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                          contentsBuilder: (context, index) => SlideTransition(
+                            position: _offsetAnimation1,
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 30),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Header(
+                                      padding: const EdgeInsets.only(
+                                          top: 30, left: 15),
+                                      text: infoList[index].contentHeading,
+                                      fontSize: 25,
+                                      color: const Color(0xff182153),
+                                      fontWeight: null),
+                                  Header(
+                                      padding: const EdgeInsets.only(
+                                          top: 20, left: 15),
+                                      text: infoList[index].contentSubHeading,
+                                      fontSize: 20,
+                                      color: const Color(0xff182153),
+                                      fontWeight: null),
+                                ],
+                              ),
+                            ),
+                          ),
+                          connectorStyleBuilder: (context, index) =>
+                              ConnectorStyle.solidLine,
+                          indicatorStyleBuilder: (context, index) =>
+                              IndicatorStyle.dot,
+                          indicatorPositionBuilder: (context, index) => 0.2,
+                          itemCount: 2,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
+        }
+      },
     );
   }
 }
