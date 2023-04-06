@@ -6,11 +6,11 @@ import 'info.dart';
 
 List<Detail> detailList = [
   Detail("2018-2022", "B.Tech", "Anand Engineering College,Ketham Agra",
-      "Computer Science and Engineering"),
+      "Completed my graduation in Computer Science & Technology."),
   Detail("2017-2018", "Intermediate",
-      "Reliance Academy,Rapti Nagar Phase-4 Gorakhpur", "PCM (CBSE)"),
+      "Reliance Academy,Rapti Nagar Phase-4 Gorakhpur", "I have completed my Schooling with PCM (CBSE)"),
   Detail("2015-2016", "High school",
-      "Blossom Senior Secondary school Maniram Gorakhpur", "PCM (CBSE)"),
+      "Blossom Senior Secondary school Maniram Gorakhpur", "I have completed my Schooling with PCM (CBSE)"),
 ];
 
 class Education extends StatefulWidget {
@@ -103,6 +103,9 @@ class _EducationState extends State<Education> with TickerProviderStateMixin {
                       height: 500,
                       width: MediaQuery.of(context).size.width / 1.1,
                       child: FixedTimeline.tileBuilder(
+                        theme: TimelineThemeData(
+                          indicatorPosition: BorderSide.strokeAlignInside
+                        ),
                         builder: TimelineTileBuilder.connectedFromStyle(
                           contentsAlign: ContentsAlign.basic,
                           oppositeContentsBuilder: (context, index) =>
@@ -174,7 +177,72 @@ class _EducationState extends State<Education> with TickerProviderStateMixin {
               ],
             ),
           );
-        } else {
+        }
+        if (dimens.maxWidth < 500) {
+          return Column(children: [
+            const Center(
+                child: Header(
+                    padding: EdgeInsets.only(top: 20, left: 15),
+                    text: "EDUCATION",
+                    fontSize: 35,
+                    color: Color(0xff182153),
+                    fontWeight: null)),
+            const SizedBox(
+              height: 20,
+            ),
+            const Divider(
+              color: Color(0xffEFEFEF),
+              thickness: 2,
+            ),
+            Padding(
+                padding: const EdgeInsets.only(top: 10, left: 20, right: 20),
+                child: SizedBox(
+                  height: 600,
+                  width: 300,
+                  child: ListView.builder(
+                      shrinkWrap: true,
+                      padding: EdgeInsets.zero,
+                      itemCount: 3,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Header(
+                              padding: const EdgeInsets.only(top: 20, left: 15),
+                              text: detailList[index].heading,
+                              fontSize: 20,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            Header(
+                              padding: const EdgeInsets.only(top: 10, left: 15),
+                              text: detailList[index].subHeading,
+                              fontSize: 15,
+                              color: const Color(0xff182153),
+                              fontWeight: null,
+                            ),
+                            Header(
+                                padding:
+                                const EdgeInsets.only(top: 20, left: 15),
+                                text: detailList[index].contentHeading,
+                                fontSize: 20,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold),
+                            Header(
+                                padding:
+                                const EdgeInsets.only(top: 10, left: 15),
+                                text: detailList[index].contentSubHeading,
+                                fontSize: 15,
+                                color: const Color(0xff182153),
+                                fontWeight: null),
+                          ],
+                        );
+                      }),
+                ))
+          ]);
+        }
+        else {
           return MouseRegion(
             onEnter: (event) {
               _controller.forward();
@@ -202,9 +270,12 @@ class _EducationState extends State<Education> with TickerProviderStateMixin {
                   child: Padding(
                     padding: const EdgeInsets.only(top: 20),
                     child: SizedBox(
-                      height: 700,
+                      height: 830,
                       width: MediaQuery.of(context).size.width / 1.1,
                       child: FixedTimeline.tileBuilder(
+                        theme: TimelineThemeData(
+                            indicatorPosition: BorderSide.strokeAlignInside
+                        ),
                         builder: TimelineTileBuilder.connectedFromStyle(
                           contentsAlign: ContentsAlign.basic,
                           oppositeContentsBuilder: (context, index) =>
@@ -266,7 +337,7 @@ class _EducationState extends State<Education> with TickerProviderStateMixin {
                               ConnectorStyle.solidLine,
                           indicatorStyleBuilder: (context, index) =>
                               IndicatorStyle.dot,
-                          indicatorPositionBuilder: (context, index) => 0.5,
+                          indicatorPositionBuilder: (context, index) => 0.2,
                           itemCount: 3,
                         ),
                       ),

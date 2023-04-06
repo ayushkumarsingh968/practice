@@ -12,24 +12,22 @@ final Color? color;
     return Row(
       mainAxisAlignment: alignment,
       children: [
-        GestureDetector(
-         onTap: _launchURLLinkdin,
-          child: Photo(
-              height: 24,
-              width: 24,
-              color: null,
-              image: Image.asset(
+        IconButton(
+         onPressed: _launchURLLinkdin,
+          icon:  Image.asset(
                 "images/linkedin.png",
+                height: 24,
+                width: 24,
                 fit: BoxFit.fill,
                 color: color,
               )),
-        ),
+
         const SizedBox(
           width: 20,
         ),
-        GestureDetector(
-          onTap: _launchURLFacebook,
-          child: Photo(
+        IconButton(
+          onPressed: _launchURLFacebook,
+           icon: Photo(
               height: 24,
               width: 24,
               color: null,
@@ -39,9 +37,9 @@ final Color? color;
         const SizedBox(
           width: 20,
         ),
-        GestureDetector(
-          onTap: _launchURLTwitter,
-          child: Photo(
+        IconButton(
+          onPressed: _launchURLTwitter,
+          icon: Photo(
               height: 24,
               width: 24,
               color: null,
@@ -51,9 +49,9 @@ final Color? color;
         const SizedBox(
           width: 20,
         ),
-        GestureDetector(
-          onTap: _launchURLInsta,
-          child: Photo(
+        IconButton(
+          onPressed: _launchURLInsta,
+          icon: Photo(
               height: 24,
               width: 24,
               color: null,

@@ -32,7 +32,6 @@ class Experience extends StatefulWidget {
 class _ExperienceState extends State<Experience> with TickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
-
   late final AnimationController _left = AnimationController(
     duration: const Duration(milliseconds: 2000),
     vsync: this,
@@ -55,6 +54,7 @@ class _ExperienceState extends State<Experience> with TickerProviderStateMixin {
     parent: _right,
     curve: Curves.ease,
   ));
+
 
   @override
   initState() {
@@ -80,9 +80,10 @@ class _ExperienceState extends State<Experience> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    double maxWidth = MediaQuery.of(context).size.width;
     return LayoutBuilder(
       builder: (context, dimens) {
-        if (dimens.maxWidth > 1035) {
+        if (maxWidth > 1035) {
           return MouseRegion(
             onEnter: (event) {
               _controller.forward();
@@ -113,22 +114,25 @@ class _ExperienceState extends State<Experience> with TickerProviderStateMixin {
                       height: 500,
                       width: MediaQuery.of(context).size.width / 1.1,
                       child: FixedTimeline.tileBuilder(
+                        theme: TimelineThemeData(
+                            indicatorPosition: BorderSide.strokeAlignInside
+                        ),
                         builder: TimelineTileBuilder.connectedFromStyle(
                           contentsAlign: ContentsAlign.basic,
                           oppositeContentsBuilder: (context, index) =>
                               SlideTransition(
                             position: _offsetAnimation,
-                            child: Padding(
-                              padding: const EdgeInsets.only(right: 30),
-                              child: SlideTransition(
-                                position: _offsetAnimation,
+                            child: SlideTransition(
+                              position: _offsetAnimation,
+                              child: Padding(
+                                padding: const EdgeInsets.only(right: 30,top: 20),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Header(
                                       padding: const EdgeInsets.only(
-                                          top: 30, left: 15),
+                                          top: 0, left: 15),
                                       text: infoList[index].heading,
                                       fontSize: 25,
                                       color: const Color(0xff182153),
@@ -150,14 +154,14 @@ class _ExperienceState extends State<Experience> with TickerProviderStateMixin {
                           contentsBuilder: (context, index) => SlideTransition(
                             position: _offsetAnimation1,
                             child: Padding(
-                              padding: const EdgeInsets.only(left: 30),
+                              padding: const EdgeInsets.only(left: 30,top: 20),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Header(
                                       padding: const EdgeInsets.only(
-                                          top: 30, left: 15),
+                                          top: 0, left: 15),
                                       text: infoList[index].contentHeading,
                                       fontSize: 25,
                                       color: const Color(0xff182153),
@@ -177,7 +181,8 @@ class _ExperienceState extends State<Experience> with TickerProviderStateMixin {
                               ConnectorStyle.solidLine,
                           indicatorStyleBuilder: (context, index) =>
                               IndicatorStyle.dot,
-                          indicatorPositionBuilder: (context, index) => 0.2,
+                          indicatorPositionBuilder: (context, index) => 0.3,
+                          nodePositionBuilder:(context, index) => 0.5,
                           itemCount: 2,
                         ),
                       ),
@@ -187,6 +192,70 @@ class _ExperienceState extends State<Experience> with TickerProviderStateMixin {
               ],
             ),
           );
+        }
+        if (maxWidth < 500) {
+          return Column(children: [
+            const Center(
+                child: Header(
+                    padding: EdgeInsets.only(top: 20, left: 15),
+                    text: "EXPERIENCE",
+                    fontSize: 35,
+                    color: Color(0xff182153),
+                    fontWeight: null)),
+            const SizedBox(
+              height: 20,
+            ),
+            const Divider(
+              color: Color(0xffEFEFEF),
+              thickness: 2,
+            ),
+            Padding(
+                padding: const EdgeInsets.only(top: 10, left: 20, right: 20),
+                child: SizedBox(
+                  height: 600,
+                  width: 300,
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                      padding: EdgeInsets.zero,
+                      itemCount: 2,
+                      itemBuilder: (BuildContext context, int index) {
+                       return Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Header(
+                              padding: const EdgeInsets.only(top: 20, left: 15),
+                              text: infoList[index].heading,
+                              fontSize: 20,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            Header(
+                              padding: const EdgeInsets.only(top: 10, left: 15),
+                              text: infoList[index].subHeading,
+                              fontSize: 15,
+                              color: const Color(0xff182153),
+                              fontWeight: null,
+                            ),
+                            Header(
+                                padding:
+                                    const EdgeInsets.only(top: 20, left: 15),
+                                text: infoList[index].contentHeading,
+                                fontSize: 20,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold),
+                            Header(
+                                padding:
+                                    const EdgeInsets.only(top: 10, left: 15),
+                                text: infoList[index].contentSubHeading,
+                                fontSize: 15,
+                                color: const Color(0xff182153),
+                                fontWeight: null),
+                          ],
+                        );
+                      }),
+                ))
+          ]);
         } else {
           return MouseRegion(
             onEnter: (event) {
@@ -218,11 +287,14 @@ class _ExperienceState extends State<Experience> with TickerProviderStateMixin {
                       height: 900,
                       width: MediaQuery.of(context).size.width / 1.1,
                       child: FixedTimeline.tileBuilder(
+                        theme: TimelineThemeData(
+                            indicatorPosition: BorderSide.strokeAlignInside
+                        ),
                         builder: TimelineTileBuilder.connectedFromStyle(
                           contentsAlign: ContentsAlign.basic,
                           oppositeContentsBuilder: (context, index) =>
-                              SlideTransition(
-                            position: _offsetAnimation,
+                              FadeTransition(
+                            opacity: _animation,
                             child: Padding(
                               padding: const EdgeInsets.only(right: 30),
                               child: SlideTransition(
@@ -252,29 +324,32 @@ class _ExperienceState extends State<Experience> with TickerProviderStateMixin {
                               ),
                             ),
                           ),
-                          contentsBuilder: (context, index) => SlideTransition(
-                            position: _offsetAnimation1,
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 30),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Header(
-                                      padding: const EdgeInsets.only(
-                                          top: 30, left: 15),
-                                      text: infoList[index].contentHeading,
-                                      fontSize: 25,
-                                      color: const Color(0xff182153),
-                                      fontWeight: null),
-                                  Header(
-                                      padding: const EdgeInsets.only(
-                                          top: 20, left: 15),
-                                      text: infoList[index].contentSubHeading,
-                                      fontSize: 20,
-                                      color: const Color(0xff182153),
-                                      fontWeight: null),
-                                ],
+                          contentsBuilder: (context, index) => FadeTransition(
+                            opacity: _animation,
+                            child: SlideTransition(
+                              position: _offsetAnimation1,
+                              child: Padding(
+                                padding: const EdgeInsets.only(left: 30),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Header(
+                                        padding: const EdgeInsets.only(
+                                            top: 30, left: 15),
+                                        text: infoList[index].contentHeading,
+                                        fontSize: 25,
+                                        color: const Color(0xff182153),
+                                        fontWeight: null),
+                                    Header(
+                                        padding: const EdgeInsets.only(
+                                            top: 20, left: 15),
+                                        text: infoList[index].contentSubHeading,
+                                        fontSize: 20,
+                                        color: const Color(0xff182153),
+                                        fontWeight: null),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
@@ -297,90 +372,3 @@ class _ExperienceState extends State<Experience> with TickerProviderStateMixin {
     );
   }
 }
-
-// class Experience extends StatelessWidget {
-//   const Experience({Key? key}) : super(key: key);
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Column(
-//       children: [
-//         const Center(
-//             child: Header(
-//                 padding: EdgeInsets.only(top: 20, left: 15),
-//                 text: "EXPERIENCE",
-//                 fontSize: 35,
-//                 color: Color(0xff182153),
-//                 fontWeight: null)),
-//         const SizedBox(
-//           height: 20,
-//         ),
-//         const Divider(
-//           color: Color(0xffEFEFEF),
-//           thickness: 2,
-//         ),
-//         Padding(
-//           padding: const EdgeInsets.only(top: 20),
-//           child: SizedBox(
-//             height: 500,
-//             width: MediaQuery.of(context).size.width / 1.1,
-//             child: FixedTimeline.tileBuilder(
-//               builder: TimelineTileBuilder.connectedFromStyle(
-//                 contentsAlign: ContentsAlign.basic,
-//                 oppositeContentsBuilder: (context, index) => Padding(
-//                   padding: const EdgeInsets.only(right: 30),
-//                   child: Column(
-//                     mainAxisAlignment: MainAxisAlignment.start,
-//                     crossAxisAlignment: CrossAxisAlignment.start,
-//                     children: [
-//                       Header(
-//                         padding: const EdgeInsets.only(top: 30, left: 15),
-//                         text: infoList[index].heading,
-//                         fontSize: 25,
-//                         color: const Color(0xff182153),
-//                         fontWeight: null,
-//                       ),
-//                       Header(
-//                         padding: const EdgeInsets.only(top: 20, left: 15),
-//                         text: infoList[index].subHeading,
-//                         fontSize: 20,
-//                         color: const Color(0xff182153),
-//                         fontWeight: null,
-//                       ),
-//                     ],
-//                   ),
-//                 ),
-//                 contentsBuilder: (context, index) => Padding(
-//                   padding: const EdgeInsets.only(left: 30),
-//                   child: Column(
-//                     mainAxisAlignment: MainAxisAlignment.start,
-//                     crossAxisAlignment: CrossAxisAlignment.start,
-//                     children: [
-//                       Header(
-//                           padding: const EdgeInsets.only(top: 30, left: 15),
-//                           text: infoList[index].contentHeading,
-//                           fontSize: 25,
-//                           color: const Color(0xff182153),
-//                           fontWeight: null),
-//                       Header(
-//                           padding: const EdgeInsets.only(top: 20, left: 15),
-//                           text: infoList[index].contentSubHeading,
-//                           fontSize: 20,
-//                           color: const Color(0xff182153),
-//                           fontWeight: null),
-//                     ],
-//                   ),
-//                 ),
-//                 connectorStyleBuilder: (context, index) =>
-//                     ConnectorStyle.solidLine,
-//                 indicatorStyleBuilder: (context, index) => IndicatorStyle.dot,
-//                 indicatorPositionBuilder: (context, index) => 0.2,
-//                 itemCount: 2,
-//               ),
-//             ),
-//           ),
-//         ),
-//       ],
-//     );
-//   }
-// }
