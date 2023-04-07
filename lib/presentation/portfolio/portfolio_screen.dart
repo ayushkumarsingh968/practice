@@ -33,7 +33,9 @@ class _PortfolioScreenState extends State<PortfolioScreen>
   final ScrollController _controller = ScrollController();
 
   late AnimationController _animationController;
+  late AnimationController _animationController1;
   late Animation<double> _animation;
+  late Animation<double> _animation1;
   late final AnimationController _left = AnimationController(
     duration: const Duration(seconds: 2),
     vsync: this,
@@ -67,10 +69,28 @@ class _PortfolioScreenState extends State<PortfolioScreen>
     parent: _right,
     curve: Curves.ease,
   ));
-
+  late final AnimationController _down = AnimationController(
+    duration: const Duration(milliseconds: 2000),
+    vsync: this,
+  );
+  late final Animation<Offset> _offsetAnimation3 = Tween<Offset>(
+    begin: const Offset(0.0, 0.2),
+    end: const Offset(0.00, 0.0),
+  ).animate(CurvedAnimation(
+    parent: _down,
+    curve: Curves.ease,
+  ));
   @override
   void initState() {
     super.initState();
+    _animationController1 = AnimationController(
+        duration: const Duration(milliseconds: 2000),
+        vsync: this,
+        value: 0,
+        lowerBound: 0,
+        upperBound: 1
+    );
+    _animation1 = CurvedAnimation(parent: _animationController1, curve: Curves.fastOutSlowIn);
 
     _animationController = AnimationController(
         duration: const Duration(milliseconds: 5000),
@@ -429,44 +449,56 @@ class _PortfolioScreenState extends State<PortfolioScreen>
                             ),
                             Stack(
                               children: [
-                                Container(
-                                  height: 475,
-                                  width: MediaQuery.of(context).size.width,
-                                  color: const Color(0xffEFEFEF),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: const [
-                                      Header(
-                                        padding:
-                                            EdgeInsets.only(top: 100, left: 15),
-                                        text: "Hello! I'm Ayush",
-                                        fontSize: 20,
-                                        color: null,
-                                        fontWeight: null,
-                                      ),
-                                      SizedBox(
-                                        height: 30,
-                                      ),
-                                      SizedBox(
-                                        height: 200,
-                                        width: 700,
-                                        child: Text(
-                                          "As a self-driven Flutter Developer with 1.5+"
-                                          "years of experience, I strive for"
-                                          "excellence and aim to be the most prized "
-                                          "possession of any organization."
-                                          "With a passion for continuous learning "
-                                          "and a hunger"
-                                          "for new technologies, I'm a quick study "
-                                          "and eager to expand my skill set."
-                                          "Let's create something amazing together!",
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(fontSize: 20),
+                                MouseRegion(
+                                  onEnter: (event){
+                                    _animationController1.forward();
+                                    _down.forward();
+                                  },
+                                  child: Container(
+                                    height: 475,
+                                    width: MediaQuery.of(context).size.width,
+                                    color: const Color(0xffEFEFEF),
+                                    child: FadeTransition(
+                                      opacity: _animation1,
+                                      child: SlideTransition(
+                                        position: _offsetAnimation3,
+                                        child: Column(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: const [
+                                            Header(
+                                              padding:
+                                                  EdgeInsets.only(top: 100, left: 15),
+                                              text: "Hello! I'm Ayush",
+                                              fontSize: 20,
+                                              color: null,
+                                              fontWeight: null,
+                                            ),
+                                            SizedBox(
+                                              height: 30,
+                                            ),
+                                            SizedBox(
+                                              height: 200,
+                                              width: 700,
+                                              child: Text(
+                                                "As a self-driven Flutter Developer with 1.5+"
+                                                "years of experience, I strive for"
+                                                "excellence and aim to be the most prized "
+                                                "possession of any organization."
+                                                "With a passion for continuous learning "
+                                                "and a hunger"
+                                                "for new technologies, I'm a quick study "
+                                                "and eager to expand my skill set."
+                                                "Let's create something amazing together!",
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(fontSize: 20),
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                       ),
-                                    ],
+                                    ),
                                   ),
                                 ),
                                 Center(
