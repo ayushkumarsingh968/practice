@@ -194,7 +194,8 @@ class _ExperienceState extends State<Experience> with TickerProviderStateMixin {
           );
         }
         if (maxWidth < 500) {
-          return Column(children: [
+          return Column(
+              children: [
             const Center(
                 child: Header(
                     padding: EdgeInsets.only(top: 20, left: 15),
@@ -216,6 +217,7 @@ class _ExperienceState extends State<Experience> with TickerProviderStateMixin {
                   width: 300,
                   child: ListView.builder(
                     shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
                       padding: EdgeInsets.zero,
                       itemCount: 2,
                       itemBuilder: (BuildContext context, int index) {

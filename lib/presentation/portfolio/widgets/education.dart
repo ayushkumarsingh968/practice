@@ -201,6 +201,7 @@ class _EducationState extends State<Education> with TickerProviderStateMixin {
                   width: 300,
                   child: ListView.builder(
                       shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
                       padding: EdgeInsets.zero,
                       itemCount: 3,
                       itemBuilder: (BuildContext context, int index) {
