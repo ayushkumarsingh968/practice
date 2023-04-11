@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'presentation/dashboard/dashboard_screen.dart';
+import 'presentation/portfolio/portfolio_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,12 +11,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const DashboardScreen(),
+      home: PortfolioScreen(),
     );
   }
 }
